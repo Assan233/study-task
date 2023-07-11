@@ -1,13 +1,5 @@
 # Typescript
 
-## 笔记
-
-> 笔记通过文章、官方文档整理。
-1. <a href='./高级类型.md' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">高级类型</a>
-2. <a href='./泛型.md' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">泛型</a>
-3. <a href='./TS工程相关.md' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">TS工程相关</a>
-
-
 
 ## 类型体操
 
