@@ -23,6 +23,12 @@
 
 
 ### medium
-1. <a href='./code/02_Omit.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02_Omit</a>
-2. <a href='./code/08-medium-readonly-2.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">08-medium-readonly-2</a>
-3. <a href='./code/09-medium-deep-readonly.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">09-medium-deep-readonly</a>
+1. <a href='./code/02-medium-return-type.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02-medium-return-type</a>
+2. <a href='./code/03-medium-omit.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03-medium-omit</a>
+3. <a href='./code/08-medium-readonly-2.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">08-medium-readonly-2</a>
+4. <a href='./code/09-medium-deep-readonly.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">09-medium-deep-readonly</a>
+5. <a href='./code/10-medium-tuple-to-union.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">10-medium-tuple-to-union</a>
+6. <a href='./code/12-medium-chainable-options.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">12-medium-chainable-options</a>
+7. <a href='./code/15-medium-last.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">15-medium-last</a>
+8. <a href='./code/16-medium-pop.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">16-medium-pop</a>
+9. <a href='./code/20-medium-promise-all.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">20-medium-promise-all</a>
