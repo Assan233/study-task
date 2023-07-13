@@ -12,13 +12,7 @@ const title = names.join("-");
 // 写入ts文件
 fs.writeFile(
     path,
-    `/**
- * ${title}
- * 实现：
- */\n
-/**
- * example:
- */\n`,
+    `/**\n * ${title}\n * 实现：\n */\n\n/**\n * example:\n */\n`,
     console.log
 );
 
