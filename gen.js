@@ -15,11 +15,10 @@ fs.writeFile(
     `/**
  * ${title}
  * 实现：
- */
-\n
+ */\n
 /**
  * example:
- */`,
+ */\n`,
     console.log
 );
 
