@@ -33,3 +33,9 @@
 8. <a href='./code/16-medium-pop.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">16-medium-pop</a>
 9. <a href='./code/20-medium-promise-all.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">20-medium-promise-all</a>
 10. <a href='./code/62-medium-type-lookup.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">62-medium-type-lookup</a>
+11. <a href='./code/106-medium-trimleft.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">106-medium-trimleft</a>
+12. <a href='./code/108-medium-trim.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">108-medium-trim</a>
+13. <a href='./code/110-medium-capitalize.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">110-medium-capitalize</a>
+14. <a href='./code/116-medium-replace.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">116-medium-replace</a>
+15. <a href='./code/119-medium-replaceall.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">119-medium-replaceall</a>
+16. <a href='./code/191-medium-append-argument.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">191-medium-append-argument</a>
