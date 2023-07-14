@@ -5,8 +5,32 @@
 
 > **TS内置类型工具实现**:  <a href='./code/实现TS内置类型工具.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">实现TS内置类型工具</a>
 
+### 生成ts测试文件
+
+`Typescript` 目录下提供了创建测试文件的脚本：
+
+- 通过`questionsId`读取`README`、`template.ts`、`test-cases.ts`文件自动创建 `答题ts` 文件。
+- 自动在索引目录md文件里面添加对应的 **题目索引**
+
+#### 如何使用
+
+1. 获取题目`ID`以及 **索引目录的索引值**
+
+2. 执行创建脚本 ` node ./Typescript/gen.js {id} {index}`
+
+   ```bash
+   // 创建 00059-hard-get-optional 测试文件
+   node ./Typescript/gen.js 59 1
+   ```
+
+   
+
+   
+
+
 
 ### easy
+
 1. <a href='./code/01_Pick.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">01_Pick</a>
 2.  <a href='./code/07-easy-readonly.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">07-easy-readonly</a>
 3.  <a href='./code/11-easy-tuple-to-object.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">11-easy-tuple-to-object</a>
@@ -48,3 +72,4 @@
 22. <a href='./code/00599-medium-merge.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00599-medium-merge</a>
 23. <a href='./code/00612-medium-kebabcase.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00612-medium-kebabcase</a>
 23. <a href='./code/00612-medium-kebabcase.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00612-medium-kebabcase</a>
+24. <a href='./code/00645-medium-diff.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00645-medium-diff</a>
