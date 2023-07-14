@@ -11,7 +11,7 @@ const mdIndex = process.argv[3];
 genQuestion(id);
 
 /**
- * 生成ts文件
+ * 生成答题相关的文件
  * @param {string} id 题目id
  */
 function genQuestion(id) {
@@ -45,7 +45,7 @@ async function genTS(sourceFolder, targetPath) {
         readFile(`${sourceFolder}/${fileName}`)
     );
     const [mdData, tplData, caseData] = await Promise.all(syncReaders);
-    const _tplData = `/**\n * 实现：\n */\n${tplData}`;
+    const _tplData = `/**\n * 实现：\n */\n${tplData}\n\n`;
     const _mdData = `Question：${getMdQuestion(mdData)}`;
     const _caseData = `/**\n * Test Case：\n */\n${caseData}`;
 

@@ -39,3 +39,12 @@
 14. <a href='./code/116-medium-replace.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">116-medium-replace</a>
 15. <a href='./code/119-medium-replaceall.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">119-medium-replaceall</a>
 16. <a href='./code/191-medium-append-argument.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">191-medium-append-argument</a>
+16. <a href='./code/00296-medium-permutation.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00296-medium-permutation</a>
+17. <a href='./code/00298-medium-length-of-string.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00298-medium-length-of-string</a>
+18. <a href='./code/00459-medium-flatten.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00459-medium-flatten</a>
+19. <a href='./code/00527-medium-append-to-object.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00527-medium-append-to-object</a>
+20. <a href='./code/00529-medium-absolute.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00529-medium-absolute</a>
+21. <a href='./code/00531-medium-string-to-union.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00531-medium-string-to-union</a>
+22. <a href='./code/00599-medium-merge.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00599-medium-merge</a>
+23. <a href='./code/00612-medium-kebabcase.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00612-medium-kebabcase</a>
+23. <a href='./code/00612-medium-kebabcase.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00612-medium-kebabcase</a>
