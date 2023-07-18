@@ -1,18 +1,15 @@
 # Typescript
 
-## 类型体操
 
 
-> **TS内置类型工具实现**:  <a href='./code/实现TS内置类型工具.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">实现TS内置类型工具</a>
-
-### 生成ts测试文件
+## 生成ts测试文件
 
 `Typescript` 目录下提供了创建测试文件的脚本：
 
 - 通过`questionsId`读取`README`、`template.ts`、`test-cases.ts`文件自动创建 `答题ts` 文件。
 - 自动在索引目录md文件里面添加对应的 **题目索引**
 
-#### 如何使用
+### 如何使用
 
 1. 获取题目`ID`以及 **索引目录的索引值**
 
@@ -24,9 +21,9 @@
    ```
 
    
+## 题目
 
-   
-
+> **TS内置类型工具实现**:  <a href='./code/实现TS内置类型工具.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">实现TS内置类型工具</a>
 
 
 ### easy
