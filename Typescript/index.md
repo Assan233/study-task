@@ -77,3 +77,13 @@
 26. <a href='./code/01042-medium-isnever.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">01042-medium-isnever</a>
 27. <a href='./code/01097-medium-isunion.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">01097-medium-isunion</a>
 28. <a href='./code/01130-medium-replacekeys.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">01130-medium-replacekeys</a>
+29. <a href='./code/01367-medium-remove-index-signature.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">01367-medium-remove-index-signature</a>
+30. <a href='./code/01978-medium-percentage-parser.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">01978-medium-percentage-parser</a>
+31. <a href='./code/02070-medium-drop-char.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02070-medium-drop-char</a>
+32. <a href='./code/02257-medium-minusone.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02257-medium-minusone</a>
+33. <a href='./code/02595-medium-pickbytype.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02595-medium-pickbytype</a>
+34. <a href='./code/02688-medium-startswith.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02688-medium-startswith</a>
+35. <a href='./code/02693-medium-endswith.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02693-medium-endswith</a>
+36. <a href='./code/02757-medium-partialbykeys.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02757-medium-partialbykeys</a>
+37. <a href='./code/02759-medium-requiredbykeys.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02759-medium-requiredbykeys</a>
+38. <a href='./code/02793-medium-mutable.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">02793-medium-mutable</a>
