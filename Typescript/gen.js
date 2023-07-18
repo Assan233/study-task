@@ -2,7 +2,12 @@ const fs = require("fs");
 const path = require("path");
 
 const questionPath = "./Typescript/questions";
-const copyFiles = ["README.zh-CN.md", "template.ts", "test-cases.ts"];
+const copyFiles = [
+    "README.zh-CN.md",
+    "README.md",
+    "template.ts",
+    "test-cases.ts",
+];
 const outputPath = "./Typescript/code";
 // 参数
 const id = process.argv[2];
@@ -44,9 +49,11 @@ async function genTS(sourceFolder, targetPath) {
     const syncReaders = copyFiles.map((fileName) =>
         readFile(`${sourceFolder}/${fileName}`)
     );
-    const [mdData, tplData, caseData] = await Promise.all(syncReaders);
+    const [zhMdData, engMdData, tplData, caseData] = await Promise.all(
+        syncReaders
+    );
     const _tplData = `/**\n * 实现：\n */\n${tplData}\n\n`;
-    const _mdData = `Question：${getMdQuestion(mdData)}`;
+    const _mdData = `Question：${getMdQuestion(zhMdData || engMdData)}`;
     const _caseData = `/**\n * Test Case：\n */\n${caseData}`;
 
     // 生成ts文件
@@ -79,7 +86,7 @@ function getQuestionFolder(questionId) {
             };
         }
     }
-    
+
     console.error("题目不存在");
     process.exit(0);
 }

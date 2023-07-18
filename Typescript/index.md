@@ -73,3 +73,7 @@
 23. <a href='./code/00612-medium-kebabcase.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00612-medium-kebabcase</a>
 23. <a href='./code/00612-medium-kebabcase.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00612-medium-kebabcase</a>
 24. <a href='./code/00645-medium-diff.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00645-medium-diff</a>
+25. <a href='./code/00949-medium-anyof.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">00949-medium-anyof</a>
+26. <a href='./code/01042-medium-isnever.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">01042-medium-isnever</a>
+27. <a href='./code/01097-medium-isunion.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">01097-medium-isunion</a>
+28. <a href='./code/01130-medium-replacekeys.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">01130-medium-replacekeys</a>
