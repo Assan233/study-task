@@ -89,3 +89,8 @@
 43. <a href='./code/03062-medium-shift.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03062-medium-shift</a>
 44. <a href='./code/03188-medium-tuple-to-nested-object.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03188-medium-tuple-to-nested-object</a>
 45. <a href='./code/03192-medium-reverse.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03192-medium-reverse</a>
+46. <a href='./code/03196-medium-flip-arguments.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03196-medium-flip-arguments</a>
+47. <a href='./code/03243-medium-flattendepth.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03243-medium-flattendepth</a>
+48. <a href='./code/03326-medium-bem-style-string.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03326-medium-bem-style-string</a>
+49. <a href='./code/03376-medium-inordertraversal.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03376-medium-inordertraversal</a>
+50. <a href='./code/04179-medium-flip.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">04179-medium-flip</a>
