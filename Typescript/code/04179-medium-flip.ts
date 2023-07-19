@@ -1,6 +1,7 @@
 /**
  * 实现：
  * 1.因为对象的值要确保合法才能作为key，所以需要对T[K]的类型进行转换
+ * 2.需要约束value的类型，因为一些类型无法转字符串，比如symbol
  */
 type Flip<T extends Record<string, string | number | boolean>> = {
     [K in keyof T as `${T[K]}`]: K

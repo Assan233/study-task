@@ -108,5 +108,6 @@ function getMdQuestion(data) {
         .replace(headerRex, "")
         .replace(/```/g, "")
         .replace(/ts/g, "")
+        .replace(/js/g, "")
         .replace(/typescript/g, "");
 }
