@@ -33,7 +33,7 @@ function genQuestion(id) {
  */
 function createMdIndex(name) {
     const mdPath = `./Typescript/index.md`;
-    const mdCode = `<a href='./code/${name}.ts' style="background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">${name}</a>`;
+    const mdCode = `<a href='./code/${name}.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">${name}</a>`;
     fs.open(mdPath, "a", (err, fd) => {
         fs.write(fd, `\n${mdIndex}. ${mdCode}`, 0, console.log);
         fs.close(fd, console.log);
