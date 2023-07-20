@@ -94,3 +94,8 @@
 48. <a href='./code/03326-medium-bem-style-string.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03326-medium-bem-style-string</a>
 49. <a href='./code/03376-medium-inordertraversal.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">03376-medium-inordertraversal</a>
 50. <a href='./code/04179-medium-flip.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">04179-medium-flip</a>
+51. <a href='./code/04182-medium-fibonacci-sequence.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">04182-medium-fibonacci-sequence</a>
+52. <a href='./code/04260-medium-nomiwase.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">04260-medium-nomiwase</a>
+53. <a href='./code/04425-medium-greater-than.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">04425-medium-greater-than</a>
+54. <a href='./code/04471-medium-zip.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">04471-medium-zip</a>
+55. <a href='./code/04484-medium-istuple.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">04484-medium-istuple</a>
