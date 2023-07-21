@@ -104,3 +104,8 @@
 58. <a href='./code/04803-medium-trim-right.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">04803-medium-trim-right</a>
 59. <a href='./code/05117-medium-without.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">05117-medium-without</a>
 60. <a href='./code/05140-medium-trunc.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">05140-medium-trunc</a>
+61. <a href='./code/05153-medium-indexof.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">05153-medium-indexof</a>
+62. <a href='./code/05310-medium-join.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">05310-medium-join</a>
+63. <a href='./code/05317-medium-lastindexof.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">05317-medium-lastindexof</a>
+64. <a href='./code/05360-medium-unique.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">05360-medium-unique</a>
+65. <a href='./code/05821-medium-maptypes.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">05821-medium-maptypes</a>

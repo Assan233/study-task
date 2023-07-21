@@ -9,10 +9,7 @@ type Trunc<T extends string | number> = `${T}` extends `${infer A}.${infer _}` ?
 /* Question：
 Implement the type version of Math.trunc, which takes string or number and returns the integer part of a number by removing any fractional digi.
 For example: */
-
-
 type A = Trunc<12.34> // 12
-
 
 
 
