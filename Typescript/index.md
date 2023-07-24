@@ -119,3 +119,5 @@
 73. <a href='./code/09898-medium-zhao-chu-mu-biao-shu-zu-zhong-zhi-chu-xian-guo-yi-ci-de-yuan-su.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">09898-medium-zhao-chu-mu-biao-shu-zu-zhong-zhi-chu-xian-guo-yi-ci-de-yuan-su</a>
 74. <a href='./code/09989-medium-tong-ji-shu-zu-zhong-de-yuan-su-ge-shu.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">09989-medium-tong-ji-shu-zu-zhong-de-yuan-su-ge-shu</a>
 75. <a href='./code/10969-medium-integer.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">10969-medium-integer</a>
+76. <a href='./code/16259-medium-to-primitive.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">16259-medium-to-primitive</a>
+77. <a href='./code/17973-medium-deepmutable.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">17973-medium-deepmutable</a>
