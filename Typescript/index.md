@@ -121,3 +121,10 @@
 75. <a href='./code/10969-medium-integer.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">10969-medium-integer</a>
 76. <a href='./code/16259-medium-to-primitive.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">16259-medium-to-primitive</a>
 77. <a href='./code/17973-medium-deepmutable.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">17973-medium-deepmutable</a>
+78. <a href='./code/18142-medium-all.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">18142-medium-all</a>
+79. <a href='./code/18220-medium-filter.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">18220-medium-filter</a>
+80. <a href='./code/21106-medium-zu-he-jian-lei-xing-combination-key-type.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">21106-medium-zu-he-jian-lei-xing-combination-key-type</a>
+81. <a href='./code/25170-medium-replace-first.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">25170-medium-replace-first</a>
+82. <a href='./code/25270-medium-transpose.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">25270-medium-transpose</a>
+83. <a href='./code/26401-medium-json-schema-to-typescript.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">26401-medium-json-schema-to-typescript</a>
+84. <a href='./code/27133-medium-square.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">27133-medium-square</a>
