@@ -132,3 +132,5 @@
 86. <a href='./code/27932-medium-mergeall.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">27932-medium-mergeall</a>
 87. <a href='./code/27958-medium-checkrepeatedtuple.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">27958-medium-checkrepeatedtuple</a>
 88. <a href='./code/28333-medium-public-type.ts' style="background-image: linear-gradient(#D59329,#C6841A);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;">28333-medium-public-type</a>
+
+### hard
