@@ -1,6 +1,12 @@
-  <section>
+<section>
     <form>
-      <input type="text" placeholder="Filter by city">
-      <button class="primary" type="button">Search</button>
+        <input type="text"
+               placeholder="Filter by city">
+        <button class="primary"
+                type="button">Search</button>
     </form>
-  </section>
+
+    <section class="results">
+        <app-housing-location [housingLocation]="housingLocation" />
+    </section>
+</section>
