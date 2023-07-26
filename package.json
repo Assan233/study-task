@@ -1,0 +1,12 @@
+{
+    "name": "study-task",
+    "version": "1.0.0",
+    "description": "- <a href='./Typescript/index.md' style=\"background-image: linear-gradient(#7EAB1B,#72A00F);color:#fff;padding:4px 5px;border-radius:4px 5px;font-size:13px;\">Typescript</a>",
+    "main": "index.js",
+    "scripts": {
+        "gents": "node ./Typescript/gen.js",
+        "ng": "cd ./Angular/code & npx ng"
+    },
+    "author": "Assan",
+    "license": "ISC"
+}

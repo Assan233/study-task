@@ -13,11 +13,11 @@
 
 1. 获取题目`ID`以及 **索引目录的索引值**
 
-2. 执行创建脚本 ` node ./Typescript/gen.js {id} {index}`
+2. 执行创建脚本 `npm run gents {id} {index}`
 
    ```bash
    // 创建 00059-hard-get-optional 测试文件
-   node ./Typescript/gen.js 59 1
+   npm run gents 59 1
    ```
 
    
