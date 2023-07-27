@@ -20,6 +20,3 @@
    npm run gents 59 1
 ```
 
-#### ng
-
-为了不用繁琐的设置`windows`环境变量，通过`npx`在 `Angular/code`寻址`ng`命令行。
