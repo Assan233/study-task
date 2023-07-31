@@ -21,7 +21,7 @@ export class Monster {
     /**
      * 怪物绘制api (包含动画的绘制)
      */
-    draw() { }
+    draw(layout: Element) { }
 
     /**
      * 承伤api

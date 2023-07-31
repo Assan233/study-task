@@ -1,4 +1,7 @@
 import { TowerAssets } from "./type/tower";
+import { Monster } from "./monster";
+
+type IMonster = typeof Monster;
 
 export class Tower {
     assets: TowerAssets = { tower: '', effect: '', bullet: '' };
@@ -19,20 +22,27 @@ export class Tower {
 
     /**
      * 攻击目标
-     * @param {string} targets:any[]
+     * @param {string} targets:IMonster[]
      */
-    attackTargets(targets: any[]) { }
+    attackTargets(targets: IMonster[]) { }
 
     /**
      * 获取攻击范围内的目标
-     * @param {string} targets:any[]
+     * @param {string} targets:IMonster[]
      */
-    private getRangeTarget(targets: any[]) { }
+    private getRangeTarget(targets: IMonster[]) { }
 
     /**
      * 绘制子弹(动画绘制)
      */
-    private renderBullet() {
+    private renderBullet(target: IMonster) {
+
+    }
+
+    /**
+     * 绘制爆炸特效(动画绘制)
+     */
+    private renderBoom(target: IMonster) {
 
     }
 }
