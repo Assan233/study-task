@@ -1,5 +1,6 @@
 import { TowerAssets } from "./type/tower";
 import { Monster } from "./monster";
+import { IPosition } from "./type/map";
 
 type IMonster = typeof Monster;
 
@@ -9,6 +10,10 @@ export class Tower {
     range: number = 0;
     // 伤害
     damage: number = 0;
+    position: IPosition = {
+        x: 0,
+        y: 0,
+    }
 
     constructor() {
 
