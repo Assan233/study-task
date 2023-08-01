@@ -39,3 +39,28 @@ export function calcDirect(currentPoint: Position, targetPoint: Position): Direc
 
     return direct
 }
+
+/**
+ * 加载图片
+ * @param {string} url:string
+ */
+export function loadImage(url: string): Promise<HTMLImageElement> {
+    return new Promise((resolve) => {
+        const image = new Image();
+        image.src = url;
+        image.onload = () => resolve(image)
+    })
+
+}
+
+// export function genMapData() {
+//     const data = []
+
+//     for (let index = 0; index < 10; index++) {
+//         data.push({
+//             x: 80 * index,
+//             y: 200
+//         })
+//     }
+//     return data
+// }
