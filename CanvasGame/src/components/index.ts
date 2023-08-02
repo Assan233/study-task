@@ -1,38 +1,74 @@
-import { GameMap } from "../service/map";
-import { loadImage } from "../utils/index";
-import roadImg from '../assets/road.jpg'
+import { GameMap, Monster, Tower } from "@/service";
+import { loadImage, readAllSprite, createCanvas } from "@/utils";
+import { MAP_DATA, MONSTER_A, LAYOUT_SIZE } from "@/const";
+import { useGlobalStore } from "@/stores";
 
-const MAP_DATA = [
-    { x: 0, y: 150 },
-    { x: 80 * 1, y: 150 },
-    { x: 80 * 2, y: 150 },
-    { x: 80 * 3, y: 150 },
-    { x: 80 * 4, y: 150 },
-    { x: 80 * 5, y: 150 },
-    { x: 80 * 6, y: 150 },
-    { x: 80 * 7, y: 150 },
-    { x: 80 * 8, y: 150 },
-    { x: 80 * 8, y: 150 + 80 * 1 },
-    { x: 80 * 8, y: 150 + 80 * 2 },
-    { x: 80 * 8, y: 150 + 80 * 3 },
-    { x: 80 * 8, y: 150 + 80 * 4 },
-]
+// assets
+import roadImg from "../assets/road.jpg";
+import monsterSpringA from "../assets/monster_0.png";
 
+export default function useInit() {
+    const global = useGlobalStore();
 
-export function run() {
-    const layout = document.createElement('canvas');
-    document.querySelector('.layout')?.appendChild(layout);
-    const layoutCtx = layout.getContext('2d') as CanvasRenderingContext2D;
+    /**
+     * 初始化
+     */
+    async function init() {
+        // 初始化全局画布
+        global.layoutContext = createCanvas(LAYOUT_SIZE).getContext("2d");
+        global.layoutSize = LAYOUT_SIZE;
+        document
+            .querySelector(".layout")
+            ?.appendChild(global.layoutContext.canvas);
 
-    initMap(layoutCtx)
-}
+        // 地图初始化
+        global.gameMap = await initMap();
+    }
 
-/**
- * 地图初始化
- * @param {string} layout:CanvasRenderingContext2D
- */
-async function initMap(layout: CanvasRenderingContext2D) {
-    const mapAssets = await loadImage(roadImg)
-    const gameMap = new GameMap(MAP_DATA, mapAssets, layout);
-    gameMap.draw()
+    /**
+     * 渲染地图/敌人/攻击塔
+     */
+    function run() {
+        // 清空全局画布
+        global.layoutContext.clearRect(
+            0,
+            0,
+            global.layoutSize.width,
+            global.layoutSize.height
+        );
+
+        // 绘制地图
+        const mapCtx = global.gameMap.context;
+        global.layoutContext.drawImage(mapCtx.canvas, 0, 0);
+
+        initMonster();
+    }
+
+    /**
+     * 地图初始化
+     */
+    async function initMap() {
+        const mapAssets = await loadImage(roadImg);
+        const gameMap = new GameMap(MAP_DATA, mapAssets);
+        gameMap.draw();
+
+        return gameMap;
+    }
+
+    /**
+     * 敌人初始化
+     */
+    async function initMonster() {
+        const springImages = await readAllSprite(monsterSpringA, 2, 2, 32, 32);
+        const monster = new Monster(
+            MONSTER_A.speed,
+            MONSTER_A.blood,
+            MONSTER_A.position,
+            springImages
+        );
+
+        monster.drawMonster();
+    }
+
+    return { init, run };
 }

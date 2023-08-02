@@ -1,39 +1,35 @@
-import { IPosition } from "./type/map";
-
-const MAP_SIZE = {
-    width: 1200,
-    height: 900,
-}
-const ITEM_SIZE = 80;
+import { IPosition } from "@/type/map";
+import { LAYOUT_SIZE, MAP_ITEM_SIZE } from "@/const";
+import { createCanvas } from "@/utils";
 
 export class GameMap {
-    size = MAP_SIZE;
-    itemSize = ITEM_SIZE;
+    size = LAYOUT_SIZE;
+    itemSize = MAP_ITEM_SIZE;
     mapData: IPosition[] = [];
     // 路面贴图
     assets: HTMLImageElement = null!;
-    mapContext: CanvasRenderingContext2D = null!;
+    // 实例内图层
+    context: CanvasRenderingContext2D = null!;
 
-    constructor(mapData: IPosition[], assets: HTMLImageElement, layout: CanvasRenderingContext2D) {
+    constructor(mapData: IPosition[], assets: HTMLImageElement) {
         this.assets = assets;
         this.mapData = mapData;
-        this.mapContext = layout;
+        this.context = createCanvas(this.size).getContext("2d");
     }
-
 
     /**
      * 地图绘制接口
      */
     draw() {
-        this.initLayout();
-
         this.mapData.forEach(({ x, y }) => {
-            this.mapContext.drawImage(this.assets, x, y, this.itemSize, this.itemSize);
-        })
+            this.context.drawImage(
+                this.assets,
+                x,
+                y,
+                this.itemSize,
+                this.itemSize
+            );
+        });
     }
 
-    initLayout() {
-        this.mapContext.canvas.width = this.size.width;
-        this.mapContext.canvas.height = this.size.height;
-    }
 }

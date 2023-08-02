@@ -7,8 +7,13 @@
 </template>
 
 <script setup lang="ts">
-// import { ref } from "vue";
-import { run } from "../components/index";
+import { onMounted } from "vue";
+import useInit from "@/components/index";
+
+const { init, run } = useInit();
+onMounted(() => {
+    init();
+});
 </script>
 
 <style scoped>
