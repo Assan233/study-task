@@ -6,3 +6,9 @@ export type Size = {
     width: number;
     height: number;
 };
+
+export type IMonster = {
+    position: MonsterPosition;
+    context: CanvasRenderingContext2D;
+    drawMonster(nextMapItem: Omit<MonsterPosition, "index">): void;
+};

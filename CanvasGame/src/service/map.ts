@@ -1,4 +1,4 @@
-import { IPosition } from "@/type/map";
+import { IPosition } from "./type";
 import { LAYOUT_SIZE, MAP_ITEM_SIZE } from "@/const";
 import { createCanvas } from "@/utils";
 
@@ -14,7 +14,9 @@ export class GameMap {
     constructor(mapData: IPosition[], assets: HTMLImageElement) {
         this.assets = assets;
         this.mapData = mapData;
-        this.context = createCanvas(this.size).getContext("2d");
+        this.context = createCanvas(this.size).getContext(
+            "2d"
+        ) as CanvasRenderingContext2D;
     }
 
     /**
@@ -31,5 +33,4 @@ export class GameMap {
             );
         });
     }
-
 }

@@ -1,4 +1,4 @@
-import type { MonsterPosition, Size } from "@/type/monster";
+import type { MonsterPosition, Size } from "./type";
 import { LAYOUT_SIZE, MAP_ITEM_SIZE } from "@/const";
 import { createCanvas, calcDirect } from "@/utils";
 
@@ -35,7 +35,9 @@ export class Monster {
         this.position = position;
         this.springImages = images;
         this.springItemSize = springItemSize;
-        this.context = createCanvas(LAYOUT_SIZE).getContext("2d");
+        this.context = createCanvas(LAYOUT_SIZE).getContext(
+            "2d"
+        ) as CanvasRenderingContext2D;
     }
 
     /**

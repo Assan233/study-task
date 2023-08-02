@@ -1,3 +1,5 @@
+import type { IMonster } from "@/service/type";
+
 import { GameMap, Monster, Tower } from "@/service";
 import { loadImage, readAllSprite, createCanvas } from "@/utils";
 import { MAP_DATA, MONSTER_A, MONSTER_B, LAYOUT_SIZE } from "@/const";
@@ -16,7 +18,9 @@ export default function useInit() {
      */
     async function init() {
         // 初始化全局画布
-        global.layoutContext = createCanvas(LAYOUT_SIZE).getContext("2d");
+        global.layoutContext = createCanvas(LAYOUT_SIZE).getContext(
+            "2d"
+        ) as CanvasRenderingContext2D;
         global.layoutSize = LAYOUT_SIZE;
         document
             .querySelector(".layout")
@@ -26,9 +30,10 @@ export default function useInit() {
         global.gameMap = await initMap();
 
         // 敌人初始化
-        global.monsterList = await Promise.all(
+        const monsterList = await Promise.all(
             monsterPresets.map(createMonster)
         );
+        global.monsterList = new Set(monsterList);
     }
 
     /**
@@ -78,7 +83,7 @@ export default function useInit() {
     /**
      * 敌人初始化
      */
-    async function createMonster(data: typeof MONSTER_A): typeof Monster {
+    async function createMonster(data: typeof MONSTER_A): Promise<IMonster> {
         const { speed, blood, position, assets } = data;
         const { url, width, height, col, row } = assets;
 
@@ -90,8 +95,11 @@ export default function useInit() {
         return monster;
     }
 
+    /**
+     * 依次渲染敌人到全局画布上
+     */
     function dragMonster() {
-        global.monsterList.map((monster) => {
+        [...global.monsterList].map((monster) => {
             const nextMapItem =
                 global.gameMap.mapData[monster.position.index + 1];
 
