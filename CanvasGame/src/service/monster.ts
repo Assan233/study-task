@@ -1,5 +1,5 @@
-import type { MonsterPosition } from "@/type/monster";
-import { LAYOUT_SIZE } from "@/const";
+import type { MonsterPosition, Size } from "@/type/monster";
+import { LAYOUT_SIZE, MAP_ITEM_SIZE } from "@/const";
 import { createCanvas } from "@/utils";
 
 export class Monster {
@@ -8,6 +8,11 @@ export class Monster {
     blood: number = 0;
     // 怪物动画抽帧canvas图集
     springImages: HTMLCanvasElement[] = [];
+    // 当前播放雪碧图index
+    springIndex: number = 0;
+    // 缓存播放帧的时间
+    springDate: number = 0;
+    springItemSize: Size = null!;
     // 实例内图层
     context: CanvasRenderingContext2D = null!;
     // 在地图中格子的位置
@@ -22,12 +27,14 @@ export class Monster {
         speed: number,
         blood: number,
         position: MonsterPosition,
-        images: HTMLCanvasElement[]
+        images: HTMLCanvasElement[],
+        springItemSize: Size
     ) {
         this.speed = speed;
         this.blood = blood;
         this.position = position;
         this.springImages = images;
+        this.springItemSize = springItemSize;
         this.context = createCanvas(LAYOUT_SIZE).getContext("2d");
     }
 
@@ -35,25 +42,28 @@ export class Monster {
      * 怪物绘制api (包含动画的绘制)
      */
     drawMonster() {
-        let i = 0;
-        // 时间间隔
+        // 每一帧播放时间间隔
         const timeSpace = 200;
-        let current = Date.now();
 
-        const draw = () => {
-            if (Date.now() - current > timeSpace) {
-                const index = i % this.springImages.length;
-                this.context.drawImage(this.springImages[index], 0, 0);
-                i++;
+        if (Date.now() - this.springDate > timeSpace) {
+            const { x, y } = this.position;
+            const offsetX = MAP_ITEM_SIZE / 2 - this.springItemSize.width / 2;
+            const offsetY = MAP_ITEM_SIZE / 2 - this.springItemSize.height / 2;
 
-                // 重置
-                current = Date.now();
-            }
+            // 先清空画布
+            this.context.clearRect(0, 0, LAYOUT_SIZE.width, LAYOUT_SIZE.height);
 
-            requestAnimationFrame(draw);
-        };
+            // 渲染帧
+            this.context.drawImage(
+                this.springImages[this.springIndex],
+                x + offsetX,
+                y + offsetY
+            );
+            this.springIndex = ++this.springIndex % this.springImages.length;
 
-        draw();
+            // 重置
+            this.springDate = Date.now();
+        }
     }
 
     /**

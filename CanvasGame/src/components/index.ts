@@ -1,11 +1,12 @@
 import { GameMap, Monster, Tower } from "@/service";
 import { loadImage, readAllSprite, createCanvas } from "@/utils";
-import { MAP_DATA, MONSTER_A, LAYOUT_SIZE } from "@/const";
+import { MAP_DATA, MONSTER_A, MONSTER_B, LAYOUT_SIZE } from "@/const";
 import { useGlobalStore } from "@/stores";
 
 // assets
-import roadImg from "../assets/road.jpg";
-import monsterSpringA from "../assets/monster_0.png";
+import roadImg from "@/assets/road.jpg";
+
+const monsterPresets = [MONSTER_A];
 
 export default function useInit() {
     const global = useGlobalStore();
@@ -23,25 +24,40 @@ export default function useInit() {
 
         // 地图初始化
         global.gameMap = await initMap();
+
+        // 敌人初始化
+        global.monsterList = await Promise.all(
+            monsterPresets.map(createMonster)
+        );
     }
 
     /**
      * 渲染地图/敌人/攻击塔
      */
     function run() {
-        // 清空全局画布
-        global.layoutContext.clearRect(
-            0,
-            0,
-            global.layoutSize.width,
-            global.layoutSize.height
-        );
+        const draw = () => {
+            // 清空全局画布
+            global.layoutContext.clearRect(
+                0,
+                0,
+                global.layoutSize.width,
+                global.layoutSize.height
+            );
 
-        // 绘制地图
-        const mapCtx = global.gameMap.context;
-        global.layoutContext.drawImage(mapCtx.canvas, 0, 0);
+            // 绘制地图
+            const mapCtx = global.gameMap.context;
+            global.layoutContext.drawImage(mapCtx.canvas, 0, 0);
 
-        initMonster();
+            // 绘制敌人
+            global.monsterList.map((monster) => {
+                monster.drawMonster();
+                global.layoutContext.drawImage(monster.context.canvas, 0, 0);
+            });
+
+            requestAnimationFrame(draw);
+        };
+
+        draw();
     }
 
     /**
@@ -58,16 +74,16 @@ export default function useInit() {
     /**
      * 敌人初始化
      */
-    async function initMonster() {
-        const springImages = await readAllSprite(monsterSpringA, 2, 2, 32, 32);
-        const monster = new Monster(
-            MONSTER_A.speed,
-            MONSTER_A.blood,
-            MONSTER_A.position,
-            springImages
-        );
+    async function createMonster(data: typeof MONSTER_A): typeof Monster {
+        const { speed, blood, position, assets } = data;
+        const { url, width, height, col, row } = assets;
 
-        monster.drawMonster();
+        const springImages = await readAllSprite(url, col, row, width, height);
+        const monster = new Monster(speed, blood, position, springImages, {
+            width,
+            height,
+        });
+        return monster;
     }
 
     return { init, run };
