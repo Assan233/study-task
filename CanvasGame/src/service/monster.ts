@@ -46,14 +46,13 @@ export class Monster {
         const timeSpace = 200;
 
         if (Date.now() - this.springDate > timeSpace) {
-            const { x, y } = this.position;
-            const offsetX = MAP_ITEM_SIZE / 2 - this.springItemSize.width / 2;
-            const offsetY = MAP_ITEM_SIZE / 2 - this.springItemSize.height / 2;
-
             // 先清空画布
             this.context.clearRect(0, 0, LAYOUT_SIZE.width, LAYOUT_SIZE.height);
 
             // 渲染帧
+            const { x, y } = this.position;
+            const offsetX = MAP_ITEM_SIZE / 2 - this.springItemSize.width / 2;
+            const offsetY = MAP_ITEM_SIZE / 2 - this.springItemSize.height / 2;
             this.context.drawImage(
                 this.springImages[this.springIndex],
                 x + offsetX,
