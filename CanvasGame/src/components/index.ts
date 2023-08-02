@@ -43,16 +43,10 @@ export default function useInit() {
                 global.layoutSize.width,
                 global.layoutSize.height
             );
-
             // 绘制地图
-            const mapCtx = global.gameMap.context;
-            global.layoutContext.drawImage(mapCtx.canvas, 0, 0);
-
+            dragMap();
             // 绘制敌人
-            global.monsterList.map((monster) => {
-                monster.drawMonster();
-                global.layoutContext.drawImage(monster.context.canvas, 0, 0);
-            });
+            dragMonster();
 
             requestAnimationFrame(draw);
         };
@@ -60,6 +54,9 @@ export default function useInit() {
         draw();
     }
 
+    /**
+     * ----地图----
+     */
     /**
      * 地图初始化
      */
@@ -70,7 +67,14 @@ export default function useInit() {
 
         return gameMap;
     }
+    function dragMap() {
+        const mapCtx = global.gameMap.context;
+        global.layoutContext.drawImage(mapCtx.canvas, 0, 0);
+    }
 
+    /**
+     * ----敌人----
+     */
     /**
      * 敌人初始化
      */
@@ -84,6 +88,19 @@ export default function useInit() {
             height,
         });
         return monster;
+    }
+
+    function dragMonster() {
+        global.monsterList.map((monster) => {
+            const nextMapItem =
+                global.gameMap.mapData[monster.position.index + 1];
+
+            if (!nextMapItem) {
+            }
+
+            monster.drawMonster(nextMapItem);
+            global.layoutContext.drawImage(monster.context.canvas, 0, 0);
+        });
     }
 
     return { init, run };

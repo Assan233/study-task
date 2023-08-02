@@ -4,7 +4,6 @@ type Position = {
     y: number;
 };
 
-
 /**
  * 检测点是否在圆内
  * @param {string} ctx:CanvasRenderingContext2D
@@ -33,9 +32,9 @@ export function calcDirect(
     targetPoint: Position
 ): Direct {
     const calcMap = {
-        left: () =>
-            currentPoint.x < targetPoint.x && currentPoint.y === targetPoint.y,
         right: () =>
+            currentPoint.x < targetPoint.x && currentPoint.y === targetPoint.y,
+        left: () =>
             currentPoint.x > targetPoint.x && currentPoint.y === targetPoint.y,
         top: () =>
             currentPoint.y > targetPoint.y && currentPoint.x === targetPoint.x,

@@ -25,7 +25,7 @@ export const MAP_DATA = [
 ];
 
 export const MONSTER_A = {
-    speed: 4,
+    speed: 8,
     blood: 100,
     position: { index: 0, x: 0, y: 150 },
     assets: {
@@ -38,7 +38,7 @@ export const MONSTER_A = {
 };
 
 export const MONSTER_B = {
-    speed: 4,
+    speed: 6,
     blood: 100,
     position: { index: 0, x: 0, y: 150 },
     assets: {

@@ -1,6 +1,6 @@
 import type { MonsterPosition, Size } from "@/type/monster";
 import { LAYOUT_SIZE, MAP_ITEM_SIZE } from "@/const";
-import { createCanvas } from "@/utils";
+import { createCanvas, calcDirect } from "@/utils";
 
 export class Monster {
     type: string = "";
@@ -40,8 +40,9 @@ export class Monster {
 
     /**
      * 怪物绘制api (包含动画的绘制)
+     * @param {Omit<MonsterPosition,'index'>} nextPosition: 下一个地图单元格的坐标，用来判断下一步的运动方向
      */
-    drawMonster() {
+    drawMonster(nextMapItem: Omit<MonsterPosition, "index">) {
         // 每一帧播放时间间隔
         const timeSpace = 200;
 
@@ -50,9 +51,11 @@ export class Monster {
             this.context.clearRect(0, 0, LAYOUT_SIZE.width, LAYOUT_SIZE.height);
 
             // 渲染帧
+            this.calcPosition(nextMapItem);
             const { x, y } = this.position;
             const offsetX = MAP_ITEM_SIZE / 2 - this.springItemSize.width / 2;
             const offsetY = MAP_ITEM_SIZE / 2 - this.springItemSize.height / 2;
+
             this.context.drawImage(
                 this.springImages[this.springIndex],
                 x + offsetX,
@@ -63,6 +66,43 @@ export class Monster {
             // 重置
             this.springDate = Date.now();
         }
+    }
+
+    /**
+     * 通过下一个地图单元格的坐标，计算position
+     * @param {MonsterPosition} nextMapItem:
+     */
+    calcPosition(nextMapItem: Omit<MonsterPosition, "index">): MonsterPosition {
+        const direct = calcDirect(this.position, nextMapItem);
+
+        switch (direct) {
+            case "left":
+                this.position.x -= this.speed;
+                if (this.position.x <= nextMapItem.x + MAP_ITEM_SIZE) {
+                    this.position.index += 1;
+                }
+                break;
+            case "right":
+                this.position.x += this.speed;
+                if (this.position.x >= nextMapItem.x) {
+                    this.position.index += 1;
+                }
+                break;
+            case "top":
+                this.position.y -= this.speed;
+                if (this.position.y <= nextMapItem.y + MAP_ITEM_SIZE) {
+                    this.position.index += 1;
+                }
+                break;
+            case "bottom":
+                this.position.y += this.speed;
+                if (this.position.y >= nextMapItem.y) {
+                    this.position.index += 1;
+                }
+                break;
+        }
+
+        return this.position;
     }
 
     /**
