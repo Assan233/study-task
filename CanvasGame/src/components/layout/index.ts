@@ -1,22 +1,32 @@
 import { createCanvas } from "@/utils";
-import { MONSTER_A, MONSTER_B, LAYOUT_SIZE } from "@/const";
+import { LAYOUT_SIZE } from "@/const";
 import { useGlobalStore } from "@/stores";
+
 import { useMap } from "./map";
 import { useMonster } from "./monster";
-
-// assets
-const monsterPresets = [MONSTER_A, MONSTER_B];
+import { useTower } from "./tower";
 
 export default function useLayout() {
     const global = useGlobalStore();
     const { initMap, dragMap } = useMap();
-    const { createMonster, dragMonster } = useMonster();
+    const { createMonsters, drawMonster } = useMonster();
+    const { addTower, drawTowers } = useTower();
 
     /**
      * 初始化
      */
     async function init() {
-        // 初始化全局画布
+        initLayout();
+
+        // 地图初始化
+        global.gameMap = await initMap();
+        // 创建敌人列表
+        global.monsterList = await createMonsters();
+    }
+    /**
+     * 初始化全局画布
+     */
+    function initLayout() {
         global.layoutContext = createCanvas(LAYOUT_SIZE).getContext(
             "2d"
         ) as CanvasRenderingContext2D;
@@ -24,15 +34,6 @@ export default function useLayout() {
         document
             .querySelector(".layout")
             ?.appendChild(global.layoutContext.canvas);
-
-        // 地图初始化
-        global.gameMap = await initMap();
-
-        // 敌人初始化
-        const monsterList = await Promise.all(
-            monsterPresets.map(createMonster)
-        );
-        global.monsterList = new Set(monsterList);
     }
 
     /**
@@ -50,7 +51,9 @@ export default function useLayout() {
             // 绘制地图
             dragMap();
             // 绘制敌人
-            dragMonster();
+            drawMonster();
+            // 绘制防御塔
+            drawTowers();
 
             requestAnimationFrame(draw);
         };
@@ -58,5 +61,5 @@ export default function useLayout() {
         draw();
     }
 
-    return { init, run };
+    return { init, run, addTower };
 }

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <button class="btn-run" @click="run">run</button>
-        <button class="btn-pause">pause</button>
+        <button class="btn-run" @click="run">Run</button>
+        <button class="btn-add" @click="addTower(Tower_A)">Add Tower</button>
     </div>
     <div class="layout"></div>
 </template>
@@ -9,8 +9,9 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import useLayout from "@/components/layout";
+import { Tower_A } from "@/const";
 
-const { init, run } = useLayout();
+const { init, run, addTower } = useLayout();
 onMounted(() => {
     init();
 });

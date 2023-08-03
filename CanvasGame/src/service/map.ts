@@ -8,7 +8,7 @@ export class GameMap {
     mapData: IPosition[] = [];
     // 路面贴图
     assets: HTMLImageElement = null!;
-    // 实例内图层
+    // 实例渲染图层
     context: CanvasRenderingContext2D = null!;
 
     constructor(mapData: IPosition[], assets: HTMLImageElement) {

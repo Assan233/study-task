@@ -13,7 +13,7 @@ export class Monster {
     // 缓存播放帧的时间
     springDate: number = 0;
     springItemSize: Size = null!;
-    // 实例内图层
+    // 实例渲染图层
     context: CanvasRenderingContext2D = null!;
     // 在地图中格子的位置
     position: MonsterPosition = {
