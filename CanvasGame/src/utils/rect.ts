@@ -1,5 +1,5 @@
 type Direct = "left" | "right" | "top" | "bottom";
-type Position = {
+type Coord = {
     x: number;
     y: number;
 };
@@ -7,14 +7,14 @@ type Position = {
 /**
  * 检测点是否在圆内
  * @param {string} ctx:CanvasRenderingContext2D
- * @param {Position} recPoint:圆心坐标
- * @param {Position} point:单点坐标
+ * @param {Coord} recPoint:圆心坐标
+ * @param {Coord} point:单点坐标
  * @param {number} radius:半径
  */
 export function checkInRange(
     ctx: CanvasRenderingContext2D,
-    recPoint: Position,
-    point: Position,
+    recPoint: Coord,
+    point: Coord,
     radius: number
 ): boolean {
     ctx.arc(recPoint.x, recPoint.y, radius, 0, Math.PI * 2, false);
@@ -23,14 +23,11 @@ export function checkInRange(
 
 /**
  * 根据目标位置判断当前点的移动位置
- * @param {Position} currentPoint:当前点
- * @param {Position} targetPoint:目标点
+ * @param {Coord} currentPoint:当前点
+ * @param {Coord} targetPoint:目标点
  * @return 移动方向
  */
-export function calcDirect(
-    currentPoint: Position,
-    targetPoint: Position
-): Direct {
+export function calcDirect(currentPoint: Coord, targetPoint: Coord): Direct {
     const calcMap = {
         right: () =>
             currentPoint.x < targetPoint.x && currentPoint.y === targetPoint.y,
@@ -50,4 +47,36 @@ export function calcDirect(
     });
 
     return direct;
+}
+
+/**
+ * 计算在2点连线的线段上移动N，返回移动坐标的偏移值
+ * @param {number} move: 移动的距离
+ * @param {Coord} startPoint: 起始点
+ * @param {Coord} endPoint: 终点
+ */
+export function calcMoveCoord(
+    moveDistance: number,
+    startPoint: Coord,
+    endPoint: Coord
+): Coord {
+    // 连接线的方向向量
+    const directionVector = [
+        endPoint.x - startPoint.x,
+        endPoint.y - startPoint.y,
+    ];
+    // 连接线的长度
+    const distance = Math.sqrt(
+        directionVector[0] ** 2 + directionVector[1] ** 2
+    );
+    // 计算标准化的方向向量
+    const normalizedDirectionVector = [
+        directionVector[0] / distance,
+        directionVector[1] / distance,
+    ];
+
+    return {
+        x: Math.round(moveDistance * normalizedDirectionVector[0]),
+        y: Math.round(moveDistance * normalizedDirectionVector[1]),
+    };
 }

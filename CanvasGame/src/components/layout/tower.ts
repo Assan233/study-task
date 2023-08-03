@@ -10,7 +10,7 @@ export function useTower() {
      * 防御塔初始化
      */
     async function addTower(config: typeof Tower_A) {
-        const { range, speed, damage, position, assets } = config;
+        const { range, speed, damage, coord, assets,fireRate } = config;
         const { tower, bullet, effect } = assets;
         const { url, col, row, width, height } = effect;
 
@@ -27,7 +27,8 @@ export function useTower() {
             range,
             speed,
             damage,
-            position,
+            fireRate,
+            coord,
             towerImage,
             bulletImage,
             effectSpringImages,
@@ -40,7 +41,7 @@ export function useTower() {
      */
     function drawTowers() {
         [...global.towerList].map((tower) => {
-            tower.draw();
+            tower.draw([...global.monsterList]);
             global.layoutContext.drawImage(tower.context.canvas, 0, 0);
         });
     }

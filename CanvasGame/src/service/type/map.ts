@@ -1,9 +1,6 @@
-export type IPosition = {
-    x: number;
-    y: number;
-};
+import type { Coord } from "./index";
 
 export type IGameMap = {
     context: CanvasRenderingContext2D;
-    mapData: IPosition[];
+    mapData: Coord[];
 };

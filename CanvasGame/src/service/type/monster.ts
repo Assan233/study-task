@@ -1,14 +1,9 @@
-import type { IPosition } from "./map";
+import type { Coord } from "./index";
 
-export type MonsterPosition = IPosition & { index: number };
-
-export type Size = {
-    width: number;
-    height: number;
-};
+export type MonsterCoord = Coord & { index: number };
 
 export type IMonster = {
-    position: MonsterPosition;
+    coord: MonsterCoord;
     context: CanvasRenderingContext2D;
-    drawMonster(nextMapItem: Omit<MonsterPosition, "index">): void;
+    drawMonster(nextMapItem: Omit<MonsterCoord, "index">): void;
 };

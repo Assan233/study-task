@@ -61,7 +61,7 @@
 
   敌人承伤`api`
 
-- **move(position: MonsterPosition)**
+- **move(coord: MonsterCoord)**
 
   移动到指定位置 (包含动画的绘制)
 
@@ -154,10 +154,10 @@
 
 - 地图数据
 
-  **mapData**: IPosition[]
+  **mapData**: Coord[]
 
   ```ts
-  type IPosition = {
+  type Coord = {
       x: number;
       y: number;
   }
@@ -227,7 +227,7 @@ function checkInRange(ctx: CanvasRenderingContext2D, x: number, y: number, radiu
 敌人的移动路径依赖`地图实例`，渲染每一帧时，将**敌人坐标**与**当前地图单元格**坐标`diff`，如果敌人坐标溢出了，根据位置信息判断敌人接下来的运动方向。
 
 ```ts
-function calcDirect(currentPoint: Position, targetPoint: Position): Direct {
+function calcDirect(currentPoint: Coord, targetPoint: Coord): Direct {
     const calcMap = {
         left: () => (currentPoint.x < targetPoint.x) && (currentPoint.y === targetPoint.y),
         right: () => (currentPoint.x > targetPoint.x) && (currentPoint.y === targetPoint.y),

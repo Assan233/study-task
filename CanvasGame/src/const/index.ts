@@ -28,9 +28,9 @@ export const MAP_DATA = [
 ];
 
 export const MONSTER_A = {
-    speed: 8,
+    speed: 2,
     blood: 100,
-    position: { index: 0, x: 0, y: 150 },
+    coord: { index: 0, x: 0, y: 150 },
     assets: {
         url: monsterSpringA,
         col: 2,
@@ -41,9 +41,9 @@ export const MONSTER_A = {
 };
 
 export const MONSTER_B = {
-    speed: 4,
+    speed: 1,
     blood: 100,
-    position: { index: 0, x: 0, y: 150 },
+    coord: { index: 0, x: 0, y: 150 },
     assets: {
         url: monsterSpringB,
         col: 2,
@@ -54,10 +54,11 @@ export const MONSTER_B = {
 };
 
 export const Tower_A = {
-    range: 32,
+    range: 200,
     speed: 4,
     damage: 15,
-    position: { x: 150, y: 150 },
+    fireRate: 800,
+    coord: { x: 150, y: 250 },
     assets: {
         tower: towerA,
         bullet: bulletA,

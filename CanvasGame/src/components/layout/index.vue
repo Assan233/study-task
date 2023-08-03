@@ -1,8 +1,10 @@
 <template>
-    <div>
-        <button class="btn-run" @click="run">Run</button>
-        <button class="btn-add" @click="addTower(Tower_A)">Add Tower</button>
+    <div class="handler">
+        <button @click="run">Run</button>
+        <button @click="addTower(Tower_A)">Add Tower</button>
     </div>
+
+    <!-- 渲染画布 -->
     <div class="layout"></div>
 </template>
 
@@ -18,6 +20,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.handler {
+    display: flex;
+    justify-content: center;
+}
+button {
+    margin: 0 16px;
+}
 .layout {
     min-width: 1200px;
     min-height: 900px;

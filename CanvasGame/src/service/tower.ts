@@ -1,72 +1,132 @@
-import { TowerAssets, TowerConfig } from "./type/tower";
-import { Monster } from "./monster";
-import { IPosition } from "./type/map";
-import { LAYOUT_SIZE, MAP_ITEM_SIZE } from "@/const";
-import { createCanvas, loadImage } from "@/utils";
+import type { TowerConfig, IMonster, Coord, IBullet } from "./type";
 
-type IMonster = typeof Monster;
+import { checkInRange } from "@/utils";
+import { Bullet } from "./bullet";
 
-export class Tower {
+import { Base } from "./base";
+
+export class Tower extends Base {
     // 静态资源
     towerImage: HTMLImageElement = null!;
     bulletImage: HTMLImageElement = null!;
+    // 爆炸动图效果抽帧canvas图集
     effectSpringImages: HTMLCanvasElement[] = [];
-    // 攻击范围
+
+    // 攻击范围-半径
     range: number = 0;
     // 子弹速度
     speed: number = 0;
     // 伤害
     damage: number = 0;
-    // 实例渲染图层
-    context: CanvasRenderingContext2D = null!;
-    position: IPosition = {
-        x: 0,
-        y: 0,
-    };
+    // 射速-ms
+    fireRate: number = 0;
+    // 上一次攻击的时间，控制射速需要
+    lastAttackTime: number = 0;
+    // // 实例渲染图层
+    // context: CanvasRenderingContext2D = null!;
+    coord: Coord = null!;
+
+    bulletList: IBullet[] = [];
+    targetList: Set<IMonster> = new Set();
 
     constructor(config: TowerConfig) {
+        super();
+        this.initLayout();
+
         Object.assign(this, config);
-        this.context = createCanvas(LAYOUT_SIZE).getContext(
-            "2d"
-        ) as CanvasRenderingContext2D;
     }
 
     /**
-     * 开始绘制
+     * 绘制 防御塔 / 子弹
+     * @param {IMonster[]} targets:
      */
-    draw() {
-        return Promise.all([this.drawTower()]);
+    draw(targets: IMonster[]) {
+        this.clearLayout();
+
+        // 绘制
+        this.drawTower();
+        this.addTarget(targets);
+        this.attackTargets();
     }
+
     /**
      * 攻击塔绘制
      */
-    async drawTower() {
-        this.context.drawImage(
-            this.towerImage,
-            this.position.x,
-            this.position.y
-        );
+    drawTower() {
+        this.context.drawImage(this.towerImage, this.coord.x, this.coord.y);
     }
 
     /**
-     * 攻击目标
+     * 根据攻击范围添加目标
      * @param {string} targets:IMonster[]
      */
-    attackTargets(targets: IMonster[]) {}
+    addTarget(targets: IMonster[]) {
+        const matchTargets = this.getRangeTarget(targets);
+        matchTargets.map((target) => this.targetList.add(target));
+    }
 
     /**
      * 获取攻击范围内的目标
      * @param {string} targets:IMonster[]
      */
-    private getRangeTarget(targets: IMonster[]) {}
+    private getRangeTarget(targets: IMonster[]): IMonster[] {
+        this.context.arc(
+            this.coord.x,
+            this.coord.y,
+            this.range,
+            0,
+            Math.PI * 2
+        );
+
+        // TODO:test
+        this.context.strokeStyle = "red";
+        this.context.stroke();
+
+        return targets.filter((target) =>
+            checkInRange(this.context, this.coord, target.coord, this.range)
+        );
+    }
+
+    /**
+     * 攻击目标
+     */
+    attackTargets() {
+        // 控制射速
+        if (Date.now() - this.lastAttackTime >= this.fireRate) {
+            this.addBullet();
+            this.lastAttackTime = Date.now();
+        }
+
+        // 绘制子弹
+        this.drawBullets();
+    }
+
+    /**
+     * 根据目标初始化子弹实例
+     */
+    private addBullet() {
+        this.bulletList = [...this.targetList].map((target) => {
+            const { range, speed, damage, bulletImage, effectSpringImages } =
+                this;
+
+            return new Bullet({
+                range,
+                speed,
+                damage,
+                target,
+                bulletImage,
+                towerCoord: this.coord,
+                effectSpringImages,
+            });
+        });
+    }
 
     /**
      * 绘制子弹(动画绘制)
      */
-    private renderBullet(target: IMonster) {}
-
-    /**
-     * 绘制爆炸特效(动画绘制)
-     */
-    private renderBoom(target: IMonster) {}
+    private drawBullets() {
+        this.bulletList.forEach((bullet) => {
+            bullet.drawBulletOnTower(this.context);
+        });
+    }
 }

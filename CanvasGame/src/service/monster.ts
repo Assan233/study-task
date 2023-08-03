@@ -1,8 +1,10 @@
-import type { MonsterPosition, Size } from "./type";
-import { LAYOUT_SIZE, MAP_ITEM_SIZE } from "@/const";
-import { createCanvas, calcDirect } from "@/utils";
+import type { MonsterCoord, Size } from "./type";
 
-export class Monster {
+import { Base } from "./base";
+import { MAP_ITEM_SIZE } from "@/const";
+import { calcDirect } from "@/utils";
+
+export class Monster extends Base {
     type: string = "";
     speed: number = 0;
     blood: number = 0;
@@ -13,10 +15,10 @@ export class Monster {
     // 缓存播放帧的时间
     springDate: number = 0;
     springItemSize: Size = null!;
-    // 实例渲染图层
-    context: CanvasRenderingContext2D = null!;
+    // // 实例渲染图层
+    // context: CanvasRenderingContext2D = null!;
     // 在地图中格子的位置
-    position: MonsterPosition = {
+    coord: MonsterCoord = {
         // 格子的索引位置
         index: 0,
         x: 0,
@@ -26,35 +28,35 @@ export class Monster {
     constructor(
         speed: number,
         blood: number,
-        position: MonsterPosition,
+        coord: MonsterCoord,
         images: HTMLCanvasElement[],
         springItemSize: Size
     ) {
+        super();
+        this.initLayout();
+        
         this.speed = speed;
         this.blood = blood;
-        this.position = position;
+        this.coord = coord;
         this.springImages = images;
         this.springItemSize = springItemSize;
-        this.context = createCanvas(LAYOUT_SIZE).getContext(
-            "2d"
-        ) as CanvasRenderingContext2D;
     }
 
     /**
      * 怪物绘制api (包含动画的绘制)
-     * @param {Omit<MonsterPosition,'index'>} nextPosition: 下一个地图单元格的坐标，用来判断下一步的运动方向
+     * @param {Omit<MonsterCoord,'index'>} nextCoord: 下一个地图单元格的坐标，用来判断下一步的运动方向
      */
-    drawMonster(nextMapItem: Omit<MonsterPosition, "index">) {
+    drawMonster(nextMapItem: Omit<MonsterCoord, "index">) {
         // 每一帧播放时间间隔
         const timeSpace = 200;
 
         if (Date.now() - this.springDate > timeSpace) {
             // 先清空画布
-            this.context.clearRect(0, 0, LAYOUT_SIZE.width, LAYOUT_SIZE.height);
+            this.clearLayout();
 
             // 渲染帧
-            this.calcPosition(nextMapItem);
-            const { x, y } = this.position;
+            this.calcCoord(nextMapItem);
+            const { x, y } = this.coord;
             const offsetX = MAP_ITEM_SIZE / 2 - this.springItemSize.width / 2;
             const offsetY = MAP_ITEM_SIZE / 2 - this.springItemSize.height / 2;
 
@@ -71,40 +73,40 @@ export class Monster {
     }
 
     /**
-     * 通过下一个地图单元格的坐标，计算position
-     * @param {MonsterPosition} nextMapItem:
+     * 通过下一个地图单元格的坐标，计算coord
+     * @param {MonsterCoord} nextMapItem:
      */
-    calcPosition(nextMapItem: Omit<MonsterPosition, "index">): MonsterPosition {
-        const direct = calcDirect(this.position, nextMapItem);
+    calcCoord(nextMapItem: Omit<MonsterCoord, "index">): MonsterCoord {
+        const direct = calcDirect(this.coord, nextMapItem);
 
         switch (direct) {
             case "left":
-                this.position.x -= this.speed;
-                if (this.position.x <= nextMapItem.x + MAP_ITEM_SIZE) {
-                    this.position.index += 1;
+                this.coord.x -= this.speed;
+                if (this.coord.x <= nextMapItem.x + MAP_ITEM_SIZE) {
+                    this.coord.index += 1;
                 }
                 break;
             case "right":
-                this.position.x += this.speed;
-                if (this.position.x >= nextMapItem.x) {
-                    this.position.index += 1;
+                this.coord.x += this.speed;
+                if (this.coord.x >= nextMapItem.x) {
+                    this.coord.index += 1;
                 }
                 break;
             case "top":
-                this.position.y -= this.speed;
-                if (this.position.y <= nextMapItem.y + MAP_ITEM_SIZE) {
-                    this.position.index += 1;
+                this.coord.y -= this.speed;
+                if (this.coord.y <= nextMapItem.y + MAP_ITEM_SIZE) {
+                    this.coord.index += 1;
                 }
                 break;
             case "bottom":
-                this.position.y += this.speed;
-                if (this.position.y >= nextMapItem.y) {
-                    this.position.index += 1;
+                this.coord.y += this.speed;
+                if (this.coord.y >= nextMapItem.y) {
+                    this.coord.index += 1;
                 }
                 break;
         }
 
-        return this.position;
+        return this.coord;
     }
 
     /**
@@ -114,7 +116,7 @@ export class Monster {
 
     /**
      * 移动到指定位置 (包含动画的绘制)
-     * @param {string} position: 位置信息
+     * @param {string} coord: 位置信息
      */
-    move(position: MonsterPosition) {}
+    move(coord: MonsterCoord) {}
 }
