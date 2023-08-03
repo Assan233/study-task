@@ -1,7 +1,7 @@
 <template>
-  <Index />
+    <Layout />
 </template>
 
 <script setup lang="ts">
-import Index from './components/index.vue'
+import Layout from "./components/layout/index.vue";
 </script>

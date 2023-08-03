@@ -8,9 +8,9 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import useInit from "@/components/index";
+import useLayout from "@/components/layout";
 
-const { init, run } = useInit();
+const { init, run } = useLayout();
 onMounted(() => {
     init();
 });
@@ -21,7 +21,7 @@ onMounted(() => {
     min-width: 1200px;
     min-height: 900px;
     padding: 24px;
-    background-image: url(../assets/bg.png);
+    background-image: url(@/assets/bg.png);
     background-repeat: no-repeat;
     background-size: contain;
     border: 1px solid seagreen;

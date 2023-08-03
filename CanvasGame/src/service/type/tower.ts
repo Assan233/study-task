@@ -5,4 +5,6 @@ export type TowerAssets = {
     effect: string;
     // 子弹图片
     bullet: string;
-}
+};
+
+export type ITower = {};

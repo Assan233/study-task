@@ -1,7 +1,6 @@
-import type { IMonster, IGameMap } from "@/service/type";
+import type { IMonster, IGameMap, ITower } from "@/service/type";
 
 import { defineStore } from "pinia";
-import { Monster, Tower, GameMap } from "@/service";
 
 type StateType = {
     layoutContext: CanvasRenderingContext2D;
@@ -12,7 +11,7 @@ type StateType = {
     // 敌人实例列表
     monsterList: Set<IMonster>;
     // 攻击塔实例列表
-    towerList: Set<typeof Monster>;
+    towerList: Set<ITower>;
     gameMap: IGameMap;
 };
 

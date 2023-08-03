@@ -43,7 +43,7 @@ export function calcDirect(
     };
 
     let direct: Direct = null!;
-    Object.keys(calcMap).forEach((key) => {
+    (Object.keys(calcMap) as Direct[]).forEach((key) => {
         if (calcMap[key]()) {
             direct = key;
         }
