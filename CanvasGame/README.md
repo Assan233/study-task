@@ -13,7 +13,37 @@
 
 # 游戏主体
 
-> 游戏里的所有主体都是通过类生成。
+## 地图
+
+1. 地图路径通过`单元格`渲染，每个单元格大小为 `8*8`。
+2. 地图路径数据是由每个单元格左上角坐标组成的数组，是`预设数据`。
+3. 地图宽高是`12：9`。
+4. 敌人的移动路径依赖`地图实例`，渲染每一帧时，将**敌人坐标**与**当前地图单元格**坐标`diff`，如果敌人坐标溢出了，根据位置信息判断敌人接下来的运动方向。
+
+
+
+### 属性和接口
+
+#### 属性
+
+```ts
+ 	// 地图单元格大小
+ 	itemSize: Size[] = [];
+	// 地图数据
+ 	mapData: Coord[] = [];
+    // 路面贴图
+    assets: HTMLImageElement = null!;
+    // 实例渲染图层
+    context: CanvasRenderingContext2D = null!;
+```
+
+#### 接口
+
+- **draw()**
+
+  地图绘制接口
+
+  
 
 ## 敌人
 
@@ -31,25 +61,31 @@
 | monster_b | 5    |
 | monster_c | 6    |
 
-
-
 ### 属性和接口
 
 #### 属性
 
-- 类型
-
-  **type**: string
-
-- 速度
-
-  **type**: number
-
-  每次动画渲染时移动的像素。
-
-- 血量
-
-  **type**: number
+```ts
+ 	type: string = "";
+    speed: number = 0;
+    blood: number = 0;
+    // 怪物动画抽帧canvas图集
+    springImages: HTMLCanvasElement[] = [];
+    // 当前播放雪碧图index
+    springIndex: number = 0;
+    // 缓存播放帧的时间
+    springDate: number = 0;
+    springItemSize: Size = null!;
+    // // 实例渲染图层
+    // context: CanvasRenderingContext2D = null!;
+    // 在地图中格子的位置
+    coord: MonsterCoord = {
+        // 格子的索引位置
+        index: 0,
+        x: 0,
+        y: 0,
+    };
+```
 
 #### 接口
 
@@ -61,7 +97,7 @@
 
   敌人承伤`api`
 
-- **move(coord: MonsterCoord)**
+- **move(position: MonsterPosition)**
 
   移动到指定位置 (包含动画的绘制)
 
@@ -81,28 +117,30 @@
 
 #### 属性
 
-- 攻击塔各种渲染效果贴图
+```ts
+  	// 静态资源
+    towerImage: HTMLImageElement = null!;
+    bulletImage: HTMLImageElement = null!;
+    // 爆炸动图效果抽帧canvas图集
+    effectSpringImages: HTMLCanvasElement[] = [];
 
-  **assets**: TowerAssets
+    // 攻击范围-半径
+    range: number = 0;
+    // 子弹速度
+    speed: number = 0;
+    // 伤害
+    damage: number = 0;
+    // 射速-ms
+    fireRate: number = 0;
+    // 上一次攻击的时间，控制射速需要
+    lastAttackTime: number = 0;
+    // // 实例渲染图层
+    // context: CanvasRenderingContext2D = null!;
+    coord: Coord = null!;
 
-  ```ts
-  type TowerAssets = {
-      // 攻击塔的图片
-      tower: string;
-      // 塔攻击效果的雪碧图
-      effect: string;
-      // 子弹图片
-      bullet: string;
-  }
-  ```
-
-- 攻击范围
-
-  **range**: number
-
-- 伤害
-
-  **damage**: number
+    bulletList: IBullet[] = [];
+    targetList: Set<IMonster> = new Set();
+```
 
 #### 接口
 
@@ -124,54 +162,51 @@
 
 
 
-## 地图
+## 子弹
 
-1. 地图路径通过`单元格`渲染，每个单元格大小为 `8*8`。
-2. 地图路径数据是由每个单元格左上角坐标组成的数组，是`预设数据`。
-3. 地图宽高是`12：9`。
-4. 敌人的移动路径依赖`地图实例`，渲染每一帧时，将**敌人坐标**与**当前地图单元格**坐标`diff`，如果敌人坐标溢出了，根据位置信息判断敌人接下来的运动方向。
+`子弹实例`寄生在`防御塔实例`中，整个攻击流程如下：
 
-
+1. 通过`防御塔`的`攻击范围`检测攻击目标
+2. 根据`射速`创建`子弹实例`
+3. 计算`子弹速度`下坐标的偏移量
+4. 检查子弹生命周期，决定是否销毁子弹
+5. 最后在防御塔图层的画布中渲染子弹
 
 ### 属性和接口
 
 #### 属性
 
-- 地图尺寸
+```ts
+ class Bullet {
+    // 攻击范围
+    range: number = 0;
+    // 子弹速度
+    speed: number = 0;
+    // 伤害
+    damage: number = 0;
+    // 记录当前子弹位置
+    currentCoord: Coord = null!;
+    // 子弹的生命周期是否已经结束
+    finished: boolean = false;
 
-  **size**: Size
-
-  ```ts
-  type Size = {
-      weith: number;
-      height: number;
-  }
-  ```
-
-- 单元格大小
-
-  **itemSize**: Size
-
-- 地图数据
-
-  **mapData**: Coord[]
-
-  ```ts
-  type Coord = {
-      x: number;
-      y: number;
-  }
-  ```
-
-- 路面贴图
-
-  **assets**: string
+    /**
+     * 这里绑定Monster的原因是，在子弹飞行时间内，Monster位置会变化，
+     * 绑定Monster可以在每次绘制帧时获取Monster实时位置，保证落点准确
+     */
+    target: IMonster = null!;
+    bulletImage: HTMLImageElement = null!;
+    // 爆炸动图效果抽帧canvas图集
+    effectSpringImages: HTMLCanvasElement[] = [];
+}
+```
 
 #### 接口
 
-- **draw()**
+- **drawBulletOnTower(context: CanvasRenderingContext2D)**
 
-  地图绘制接口
+  基于 防御塔画布 绘制子弹
+
+
 
 
 
@@ -186,8 +221,6 @@
 - 为了避免实体之间相互影响，每个`实体`都有自己独立的`canvas图层`，最后通过将各个图层**合并渲染**。
 - 子弹的渲染还有**爆炸特效**，那么就需要对子弹做`终点校验`，当子弹到达终点时，渲染爆炸特效。
 
-
-
 ### 动画类型
 
 - 雪碧图动画
@@ -201,8 +234,6 @@
   如子弹的移动/敌人的移动
 
   每一帧通过计算`speed`偏移值渲染。
-
-  
 
 > 需要及时清理`实例`以及`动画`，以防止引起内存泄漏
 
@@ -227,7 +258,7 @@ function checkInRange(ctx: CanvasRenderingContext2D, x: number, y: number, radiu
 敌人的移动路径依赖`地图实例`，渲染每一帧时，将**敌人坐标**与**当前地图单元格**坐标`diff`，如果敌人坐标溢出了，根据位置信息判断敌人接下来的运动方向。
 
 ```ts
-function calcDirect(currentPoint: Coord, targetPoint: Coord): Direct {
+function calcDirect(currentPoint: Position, targetPoint: Position): Direct {
     const calcMap = {
         left: () => (currentPoint.x < targetPoint.x) && (currentPoint.y === targetPoint.y),
         right: () => (currentPoint.x > targetPoint.x) && (currentPoint.y === targetPoint.y),
