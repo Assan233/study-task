@@ -50,7 +50,7 @@ export function calcDirect(currentPoint: Coord, targetPoint: Coord): Direct {
 }
 
 /**
- * 计算在2点连线的线段上移动N，返回移动坐标的偏移值
+ * 计算在2点连线的线段上移动N，返回移动坐标的偏移值以及连接线的长度
  * @param {number} move: 移动的距离
  * @param {Coord} startPoint: 起始点
  * @param {Coord} endPoint: 终点
@@ -59,7 +59,7 @@ export function calcMoveCoord(
     moveDistance: number,
     startPoint: Coord,
     endPoint: Coord
-): Coord {
+): Coord & { distance: number } {
     // 连接线的方向向量
     const directionVector = [
         endPoint.x - startPoint.x,
@@ -76,6 +76,7 @@ export function calcMoveCoord(
     ];
 
     return {
+        distance,
         x: Math.round(moveDistance * normalizedDirectionVector[0]),
         y: Math.round(moveDistance * normalizedDirectionVector[1]),
     };

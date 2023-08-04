@@ -41,7 +41,7 @@ export const MONSTER_A = {
 };
 
 export const MONSTER_B = {
-    speed: 1,
+    speed: 6,
     blood: 100,
     coord: { index: 0, x: 0, y: 150 },
     assets: {

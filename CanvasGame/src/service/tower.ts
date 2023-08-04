@@ -99,13 +99,14 @@ export class Tower extends Base {
 
         // 绘制子弹
         this.drawBullets();
+        this.clearBullets();
     }
 
     /**
      * 根据目标初始化子弹实例
      */
     private addBullet() {
-        this.bulletList = [...this.targetList].map((target) => {
+        const bulletList = [...this.targetList].map((target) => {
             const { range, speed, damage, bulletImage, effectSpringImages } =
                 this;
 
@@ -119,6 +120,8 @@ export class Tower extends Base {
                 effectSpringImages,
             });
         });
+
+        this.bulletList = [...this.bulletList, ...bulletList];
     }
 
     /**
@@ -128,5 +131,12 @@ export class Tower extends Base {
         this.bulletList.forEach((bullet) => {
             bullet.drawBulletOnTower(this.context);
         });
+    }
+
+    /**
+     * 清理生命周期结束的子弹
+     */
+    clearBullets() {
+        this.bulletList = this.bulletList.filter((bullet) => !bullet.finished);
     }
 }

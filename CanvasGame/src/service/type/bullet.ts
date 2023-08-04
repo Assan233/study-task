@@ -2,6 +2,8 @@ import type { IMonster } from "./monster";
 import { Coord } from "./index";
 
 export type IBullet = {
+    // 子弹的生命周期是否已经结束
+    finished: boolean;
     drawBulletOnTower(context: CanvasRenderingContext2D): void;
 };
 
