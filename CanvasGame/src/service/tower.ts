@@ -140,6 +140,8 @@ export class Tower extends Base {
      * 清理生命周期结束的子弹
      */
     clearBullets() {
-        this.bulletList = this.bulletList.filter((bullet) => !bullet.finished);
+        this.bulletList = this.bulletList.filter(
+            (bullet) => bullet.lifeCycle !== "finished"
+        );
     }
 }

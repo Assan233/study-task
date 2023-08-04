@@ -13,18 +13,28 @@ export const MAP_ITEM_SIZE = 60;
 
 export const MAP_DATA = [
     { x: 0, y: 150 },
-    { x: 60 * 1, y: 150 },
-    { x: 60 * 2, y: 150 },
-    { x: 60 * 3, y: 150 },
-    { x: 60 * 4, y: 150 },
-    { x: 60 * 5, y: 150 },
-    { x: 60 * 6, y: 150 },
-    { x: 60 * 7, y: 150 },
-    { x: 60 * 8, y: 150 },
-    { x: 60 * 8, y: 150 + 60 * 1 },
-    { x: 60 * 8, y: 150 + 60 * 2 },
-    { x: 60 * 8, y: 150 + 60 * 3 },
-    { x: 60 * 8, y: 150 + 60 * 4 },
+    { x: MAP_ITEM_SIZE * 1, y: 150 },
+    { x: MAP_ITEM_SIZE * 2, y: 150 },
+    { x: MAP_ITEM_SIZE * 3, y: 150 },
+    { x: MAP_ITEM_SIZE * 4, y: 150 },
+    { x: MAP_ITEM_SIZE * 5, y: 150 },
+    { x: MAP_ITEM_SIZE * 6, y: 150 },
+    { x: MAP_ITEM_SIZE * 7, y: 150 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 + MAP_ITEM_SIZE * 1 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 + MAP_ITEM_SIZE * 2 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 + MAP_ITEM_SIZE * 3 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 + MAP_ITEM_SIZE * 4 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 + MAP_ITEM_SIZE * 5 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 + MAP_ITEM_SIZE * 6 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 + MAP_ITEM_SIZE * 7 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 + MAP_ITEM_SIZE * 8 },
+    { x: MAP_ITEM_SIZE * 9, y: 150 + MAP_ITEM_SIZE * 8 },
+    { x: MAP_ITEM_SIZE * 10, y: 150 + MAP_ITEM_SIZE * 8 },
+    { x: MAP_ITEM_SIZE * 11, y: 150 + MAP_ITEM_SIZE * 8 },
+    { x: MAP_ITEM_SIZE * 12, y: 150 + MAP_ITEM_SIZE * 8 },
+    { x: MAP_ITEM_SIZE * 13, y: 150 + MAP_ITEM_SIZE * 8 },
+    { x: MAP_ITEM_SIZE * 14, y: 150 + MAP_ITEM_SIZE * 8 },
 ];
 
 export const MONSTER_A = {
@@ -41,7 +51,7 @@ export const MONSTER_A = {
 };
 
 export const MONSTER_B = {
-    speed: 6,
+    speed: 4,
     blood: 100,
     coord: { index: 0, x: 0, y: 150 },
     assets: {
@@ -55,9 +65,9 @@ export const MONSTER_B = {
 
 export const Tower_A = {
     range: 200,
-    speed: 4,
+    speed: 3,
     damage: 15,
-    fireRate: 800,
+    fireRate: 2000,
     coord: { x: 150, y: 250 },
     assets: {
         tower: towerA,
@@ -66,8 +76,8 @@ export const Tower_A = {
             url: bulletEffectA,
             col: 3,
             row: 3,
-            width: 21,
-            height: 21,
+            width: 22,
+            height: 22,
         },
     },
 };

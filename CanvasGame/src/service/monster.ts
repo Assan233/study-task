@@ -34,7 +34,7 @@ export class Monster extends Base {
     ) {
         super();
         this.initLayout();
-        
+
         this.speed = speed;
         this.blood = blood;
         this.coord = coord;
@@ -66,6 +66,15 @@ export class Monster extends Base {
                 y + offsetY
             );
             this.springIndex = ++this.springIndex % this.springImages.length;
+
+            // TODO: test
+            // this.context.strokeRect(
+            //     x + offsetX,
+            //     y + offsetY,
+            //     this.springItemSize.width,
+            //     this.springItemSize.height
+            // );
+            // this.context.stroke();
 
             // 重置
             this.springDate = Date.now();

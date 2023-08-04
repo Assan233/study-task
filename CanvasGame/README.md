@@ -178,7 +178,7 @@
 
 ```ts
  class Bullet {
-    // 攻击范围
+     // 攻击范围
     range: number = 0;
     // 子弹速度
     speed: number = 0;
@@ -186,8 +186,8 @@
     damage: number = 0;
     // 记录当前子弹位置
     currentCoord: Coord = null!;
-    // 子弹的生命周期是否已经结束
-    finished: boolean = false;
+    // 子弹的生命周期  "flying" | "booming" | "finished";
+    lifeCycle: LifeCycle = "flying";
 
     /**
      * 这里绑定Monster的原因是，在子弹飞行时间内，Monster位置会变化，
@@ -197,6 +197,7 @@
     bulletImage: HTMLImageElement = null!;
     // 爆炸动图效果抽帧canvas图集
     effectSpringImages: HTMLCanvasElement[] = [];
+    currentSpringIndex: number = 0;
 }
 ```
 
@@ -279,12 +280,40 @@ function calcDirect(currentPoint: Position, targetPoint: Position): Direct {
 
 
 
+## 子弹的绘制
 
+子弹的绘制分为`飞行阶段`和`爆炸阶段`，通过声明`子弹生命周期`的形式来控制子弹的绘制。
 
+```ts
+// 生命周期
+type LifeCycle = "flying" | "booming" | "finished";
+```
 
+### 生命周期的边界判断
 
+1. **flying --> booming**
 
+   条件：计算`子弹`与`目标`之间连接线的长度 <= `子弹速度`
 
+   ```ts
+    // 连接线的方向向量
+   const directionVector = [
+       endPoint.x - startPoint.x,
+       endPoint.y - startPoint.y,
+   ];
+   // 连接线的长度
+   const distance = Math.sqrt(
+       directionVector[0] ** 2 + directionVector[1] ** 2
+   );
+   
+   const isDone = inRange(Math.abs(distance), 0, speed)
+   ```
+
+   
+
+2. **booming --> finished**
+
+   完成爆炸特效绘制时。
 
 
 

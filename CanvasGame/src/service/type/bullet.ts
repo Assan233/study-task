@@ -1,9 +1,11 @@
 import type { IMonster } from "./monster";
 import { Coord } from "./index";
 
+export type LifeCycle = "flying" | "booming" | "finished";
+
 export type IBullet = {
     // 子弹的生命周期是否已经结束
-    finished: boolean;
+    lifeCycle: LifeCycle;
     drawBulletOnTower(context: CanvasRenderingContext2D): void;
 };
 
