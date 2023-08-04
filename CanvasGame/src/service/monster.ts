@@ -48,7 +48,7 @@ export class Monster extends Base {
      */
     drawMonster(nextMapItem: Omit<MonsterCoord, "index">) {
         // 每一帧播放时间间隔
-        const timeSpace = 200;
+        const timeSpace = 150;
 
         if (Date.now() - this.springDate > timeSpace) {
             // 先清空画布

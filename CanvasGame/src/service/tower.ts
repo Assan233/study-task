@@ -18,6 +18,8 @@ export class Tower extends Base {
     speed: number = 0;
     // 伤害
     damage: number = 0;
+    // 伤害半径
+    damageRange: number = 0;
     // 射速-ms
     fireRate: number = 0;
     // 上一次攻击的时间，控制射速需要
@@ -110,13 +112,20 @@ export class Tower extends Base {
      */
     private addBullet() {
         const bulletList = [...this.targetList].map((target) => {
-            const { range, speed, damage, bulletImage, effectSpringImages } =
-                this;
+            const {
+                range,
+                speed,
+                damage,
+                bulletImage,
+                damageRange,
+                effectSpringImages,
+            } = this;
 
             return new Bullet({
                 range,
                 speed,
                 damage,
+                damageRange,
                 target,
                 bulletImage,
                 towerCoord: this.coord,

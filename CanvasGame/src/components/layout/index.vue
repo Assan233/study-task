@@ -2,6 +2,7 @@
     <div class="handler">
         <button @click="run">Run</button>
         <button @click="addTower(Tower_A)">Add Tower</button>
+        <button @click="addTower(Tower_B)">Add Tower 2</button>
     </div>
 
     <!-- 渲染画布 -->
@@ -11,7 +12,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import useLayout from "@/components/layout";
-import { Tower_A } from "@/const";
+import { Tower_A, Tower_B } from "@/const";
 
 const { init, run, addTower } = useLayout();
 onMounted(() => {

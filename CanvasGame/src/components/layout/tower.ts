@@ -10,7 +10,8 @@ export function useTower() {
      * 防御塔初始化
      */
     async function addTower(config: typeof Tower_A) {
-        const { range, speed, damage, coord, assets,fireRate } = config;
+        const { range, speed, damage, coord, assets, fireRate, damageRange } =
+            config;
         const { tower, bullet, effect } = assets;
         const { url, col, row, width, height } = effect;
 
@@ -27,6 +28,7 @@ export function useTower() {
             range,
             speed,
             damage,
+            damageRange,
             fireRate,
             coord,
             towerImage,

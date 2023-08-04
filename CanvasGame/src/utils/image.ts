@@ -31,9 +31,13 @@ export async function readAllSprite(
     height: number
 ): Promise<HTMLCanvasElement[]> {
     const spriteCanvas = document.createElement("canvas");
+    spriteCanvas.width = width * spriteCols;
+    spriteCanvas.height = height * spriteRows;
+
     const spriteCtx = spriteCanvas.getContext("2d", {
         withDirectives: true,
     }) as CanvasRenderingContext2D;
+
     const spriteImage = (await loadImage(spriteUrl)) as HTMLImageElement;
     spriteCtx.drawImage(spriteImage, 0, 0);
 

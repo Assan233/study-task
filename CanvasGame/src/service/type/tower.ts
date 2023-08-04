@@ -10,6 +10,7 @@ export type TowerConfig = {
     speed: number;
     fireRate: number;
     damage: number;
+    damageRange: number;
     coord: { x: number; y: number };
     towerImage: HTMLImageElement;
     bulletImage: HTMLImageElement;

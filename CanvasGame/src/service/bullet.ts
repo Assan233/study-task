@@ -10,6 +10,7 @@ export class Bullet {
     speed: number = 0;
     // 伤害
     damage: number = 0;
+    damageRange: number = 0;
     // 记录当前子弹位置
     currentCoord: Coord = null!;
     // 子弹的生命周期
@@ -82,10 +83,13 @@ export class Bullet {
      * @param {CanvasRenderingContext2D} context: 防御塔画布
      */
     drawBullet(context: CanvasRenderingContext2D) {
+        const bulletSize = 20;
         context.drawImage(
             this.bulletImage,
             this.currentCoord.x,
-            this.currentCoord.y
+            this.currentCoord.y,
+            bulletSize,
+            bulletSize
         );
     }
     /**
@@ -93,7 +97,7 @@ export class Bullet {
      * @param {CanvasRenderingContext2D} context: 防御塔画布
      */
     drawEffect(context: CanvasRenderingContext2D) {
-        const timeSpace = 250;
+        const timeSpace = 150;
 
         // 满足时间间隔，切换下一帧
         if (Date.now() - this.springDate > timeSpace) {
@@ -111,17 +115,11 @@ export class Bullet {
         this._drawEffect(context);
     }
     _drawEffect(context: CanvasRenderingContext2D) {
-        const boomSize = 50;
         const image = this.effectSpringImages[this.springIndex];
 
-        // 计算特效水平居中对齐
-        const offsetX =
-            MAP_ITEM_SIZE / 2 -
-            this.target.springItemSize.width / 2 -
-            (boomSize - this.target.springItemSize.width) / 2;
-        const offsetY =
-            MAP_ITEM_SIZE / 2 -
-            this.target.springItemSize.height / 2;
+        // 计算特效居中对齐
+        const offsetX = -(this.damageRange - MAP_ITEM_SIZE) / 2;
+        const offsetY = -(this.damageRange - MAP_ITEM_SIZE) / 2;
 
         const targetCoord = {
             x: this.targetCoord.x + offsetX,
@@ -132,12 +130,17 @@ export class Bullet {
             image,
             targetCoord.x,
             targetCoord.y,
-            boomSize,
-            boomSize
+            this.damageRange,
+            this.damageRange
         );
 
         // TODO: test
-        // context.strokeRect(targetCoord.x, targetCoord.y, boomSize, boomSize);
+        // context.strokeRect(
+        //     targetCoord.x,
+        //     targetCoord.y,
+        //     this.damageRange,
+        //     this.damageRange
+        // );
         // context.stroke();
     }
 

@@ -1,8 +1,13 @@
 import monsterSpringA from "@/assets/monster_0.png";
 import monsterSpringB from "@/assets/monster_1.png";
+
 import towerA from "@/assets/tower_0.png";
 import bulletA from "@/assets/bullet_0.png";
 import bulletEffectA from "@/assets/bullet_effect_0.png";
+
+import towerB from "@/assets/tower_1.png";
+import bulletB from "@/assets/bullet_1.png";
+import bulletEffectB from "@/assets/bullet_effect_1.png";
 
 export const LAYOUT_SIZE = {
     width: 1200,
@@ -65,6 +70,7 @@ export const MONSTER_B = {
 
 export const Tower_A = {
     range: 200,
+    damageRange: 50,
     speed: 3,
     damage: 15,
     fireRate: 2000,
@@ -78,6 +84,25 @@ export const Tower_A = {
             row: 3,
             width: 22,
             height: 22,
+        },
+    },
+};
+export const Tower_B = {
+    range: 250,
+    damageRange: 150,
+    speed: 3,
+    damage: 15,
+    fireRate: 3000,
+    coord: { x: 150, y: 250 },
+    assets: {
+        tower: towerB,
+        bullet: bulletB,
+        effect: {
+            url: bulletEffectB,
+            col: 4,
+            row: 4,
+            width: 116,
+            height: 116,
         },
     },
 };

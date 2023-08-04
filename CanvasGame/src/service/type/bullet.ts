@@ -16,6 +16,7 @@ export type BulletConfig = {
     speed: number;
     // 伤害
     damage: number;
+    damageRange: number;
     // 防御塔坐标
     towerCoord: Coord;
 
