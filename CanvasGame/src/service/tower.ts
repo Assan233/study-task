@@ -61,6 +61,9 @@ export class Tower extends Base {
      * @param {string} targets:IMonster[]
      */
     addTarget(targets: IMonster[]) {
+        // 每次清空目标列表
+        this.targetList = new Set();
+
         const matchTargets = this.getRangeTarget(targets);
         matchTargets.map((target) => this.targetList.add(target));
     }
