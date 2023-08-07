@@ -63,7 +63,11 @@ export class Bullet {
         /**
          * 子弹到达终点
          */
-        const isReach = inRange(Math.abs(offset.distance), 0, this.targetSpeed);
+        const isReach = inRange(
+            Math.abs(offset.distance),
+            0,
+            this.targetSpeed + 1
+        );
         if (isReach) {
             // 到达终点先计算敌人承伤
             if (this.lifeCycle === "flying") {
@@ -102,7 +106,7 @@ export class Bullet {
      * @param {CanvasRenderingContext2D} context: 防御塔画布
      */
     drawEffect(context: CanvasRenderingContext2D) {
-        const timeSpace = 50;
+        const timeSpace = 100;
 
         // 满足时间间隔，切换下一帧
         if (Date.now() - this.springDate > timeSpace) {

@@ -70,7 +70,7 @@ export const MONSTER_B = {
 
 export const Tower_A = {
     range: 200,
-    damageRange: 50,
+    damageRange: 60,
     speed: 5,
     damage: 15,
     fireRate: 2000,
@@ -80,10 +80,10 @@ export const Tower_A = {
         bullet: bulletA,
         effect: {
             url: bulletEffectA,
-            col: 3,
-            row: 3,
-            width: 22,
-            height: 22,
+            col: 2,
+            row: 2,
+            width: 64,
+            height: 64,
         },
     },
 };
