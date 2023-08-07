@@ -42,8 +42,11 @@ export function useTower() {
      * 绘制所有防御塔
      */
     function drawTowers() {
-        [...global.towerList].map((tower) => {
-            tower.draw([...global.monsterList]);
+        const monsterList = global.getMonsterList();
+        const towerList = [...global.towerList];
+        
+        towerList.map((tower) => {
+            tower.draw(monsterList);
             global.layoutContext.drawImage(tower.context.canvas, 0, 0);
         });
     }

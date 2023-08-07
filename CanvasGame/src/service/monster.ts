@@ -1,4 +1,4 @@
-import type { MonsterCoord, Size } from "./type";
+import type { MonsterCoord, Size, Coord } from "./type";
 
 import { Base } from "./base";
 import { MAP_ITEM_SIZE } from "@/const";
@@ -8,6 +8,10 @@ export class Monster extends Base {
     type: string = "";
     speed: number = 0;
     blood: number = 0;
+    currentBlood: number = 0;
+    // 敌人已死亡
+    finished: boolean = false;
+
     // 怪物动画抽帧canvas图集
     springImages: HTMLCanvasElement[] = [];
     // 当前播放雪碧图index
@@ -37,9 +41,27 @@ export class Monster extends Base {
 
         this.speed = speed;
         this.blood = blood;
+        this.currentBlood = blood;
         this.coord = coord;
         this.springImages = images;
         this.springItemSize = springItemSize;
+    }
+
+    /**
+     * 获取敌人实际的渲染坐标
+     * 因为this.coord缓存的是敌人在地图未做居中对齐的坐标
+     */
+    get computedCoord(): Coord {
+        const { x, y } = this.coord;
+        const offsetX = MAP_ITEM_SIZE / 2 - this.springItemSize.width / 2;
+        const offsetY = MAP_ITEM_SIZE / 2 - this.springItemSize.height / 2;
+
+        return { x: x + offsetX, y: y + offsetY };
+    }
+
+    draw(nextMapItem: Omit<MonsterCoord, "index">) {
+        this.drawMonster(nextMapItem);
+        this.drawBlood();
     }
 
     /**
@@ -80,7 +102,6 @@ export class Monster extends Base {
             this.springDate = Date.now();
         }
     }
-
     /**
      * 通过下一个地图单元格的坐标，计算coord
      * @param {MonsterCoord} nextMapItem:
@@ -119,15 +140,43 @@ export class Monster extends Base {
     }
 
     /**
-     * 承伤api
+     * 绘制血条
      */
-    damage(damage: number) {
-        this.blood -= damage;
+    drawBlood() {
+        const bloodSize = {
+            // 血条实际长度 *0.3的系数
+            width: this.blood * 0.3,
+            height: 4,
+        };
+        const coord = {
+            x:
+                this.computedCoord.x +
+                (this.springItemSize.width - bloodSize.width) / 2,
+            y: this.computedCoord.y - bloodSize.height * 2,
+        };
+
+        // 血条背景色
+        this.context.fillStyle = "#45031a";
+        this.context.fillRect(
+            coord.x,
+            coord.y,
+            bloodSize.width,
+            bloodSize.height
+        );
+
+        // 血条颜色
+        this.context.fillStyle = "#ff4a3b";
+        const bloodWidth = (this.currentBlood / this.blood) * bloodSize.width;
+        this.context.fillRect(coord.x, coord.y, bloodWidth, bloodSize.height);
     }
 
     /**
-     * 移动到指定位置 (包含动画的绘制)
-     * @param {string} coord: 位置信息
+     * 承伤api
      */
-    move(coord: MonsterCoord) {}
+    damage(damage: number) {
+        this.currentBlood -= damage;
+        if (this.currentBlood <= 0) {
+            this.finished = true;
+        }
+    }
 }

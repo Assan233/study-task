@@ -65,6 +65,11 @@ export class Bullet {
          */
         const isReach = inRange(Math.abs(offset.distance), 0, this.targetSpeed);
         if (isReach) {
+            // 到达终点先计算敌人承伤
+            if (this.lifeCycle === "flying") {
+                this.handleDamage();
+            }
+
             this.turnCycle("booming");
         }
 
@@ -108,9 +113,6 @@ export class Bullet {
         // 播放特效最后一帧，finished
         if (this.springIndex === this.effectSpringImages.length) {
             this.turnCycle("finished");
-
-            // 敌人承伤
-            this.handleDamage();
             return;
         }
 

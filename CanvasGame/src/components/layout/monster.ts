@@ -39,14 +39,13 @@ export function useMonster() {
      * 依次渲染敌人到全局画布上
      */
     function drawMonster() {
-        [...global.monsterList].map((monster) => {
-            const nextMapItem =
-                global.gameMap.mapData[monster.coord.index + 1];
+        const monsterList = global.getMonsterList();
 
-            if (!nextMapItem) {
-            }
-
-            monster.drawMonster(nextMapItem);
+        monsterList.forEach((monster) => {
+            const nextMapItem = global.gameMap.mapData[monster.coord.index + 1];
+            // if (!nextMapItem) {
+            // }
+            monster.draw(nextMapItem);
             global.layoutContext.drawImage(monster.context.canvas, 0, 0);
         });
     }

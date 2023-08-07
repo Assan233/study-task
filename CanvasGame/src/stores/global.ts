@@ -23,5 +23,9 @@ export const useGlobalStore = defineStore("global", {
         towerList: new Set(),
         gameMap: null!,
     }),
-    actions: {},
+    actions: {
+        getMonsterList() {
+            return [...this.monsterList].filter((monster) => !monster.finished);
+        },
+    },
 });

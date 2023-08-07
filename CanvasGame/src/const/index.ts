@@ -57,7 +57,7 @@ export const MONSTER_A = {
 
 export const MONSTER_B = {
     speed: 4,
-    blood: 100,
+    blood: 150,
     coord: { index: 0, x: 0, y: 150 },
     assets: {
         url: monsterSpringB,
@@ -71,7 +71,7 @@ export const MONSTER_B = {
 export const Tower_A = {
     range: 200,
     damageRange: 50,
-    speed: 4,
+    speed: 5,
     damage: 15,
     fireRate: 2000,
     coord: { x: 150, y: 250 },
@@ -90,7 +90,7 @@ export const Tower_A = {
 export const Tower_B = {
     range: 250,
     damageRange: 150,
-    speed: 4,
+    speed: 5,
     damage: 15,
     fireRate: 3000,
     coord: { x: 150, y: 250 },
