@@ -121,7 +121,9 @@ export class Monster extends Base {
     /**
      * 承伤api
      */
-    damage(damage: number) {}
+    damage(damage: number) {
+        this.blood -= damage;
+    }
 
     /**
      * 移动到指定位置 (包含动画的绘制)

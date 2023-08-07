@@ -97,7 +97,7 @@ export class Bullet {
      * @param {CanvasRenderingContext2D} context: 防御塔画布
      */
     drawEffect(context: CanvasRenderingContext2D) {
-        const timeSpace = 150;
+        const timeSpace = 50;
 
         // 满足时间间隔，切换下一帧
         if (Date.now() - this.springDate > timeSpace) {
@@ -108,6 +108,9 @@ export class Bullet {
         // 播放特效最后一帧，finished
         if (this.springIndex === this.effectSpringImages.length) {
             this.turnCycle("finished");
+
+            // 敌人承伤
+            this.handleDamage();
             return;
         }
 
@@ -142,6 +145,12 @@ export class Bullet {
         //     this.damageRange
         // );
         // context.stroke();
+    }
+    /**
+     * 敌人承伤
+     */
+    handleDamage() {
+        this.target.damage(this.damage);
     }
 
     /**
