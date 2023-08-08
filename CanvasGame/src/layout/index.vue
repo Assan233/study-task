@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import useLayout from "@/components/layout";
+import useLayout from "./index";
 import { Tower_A, Tower_B } from "@/const";
 
 const { init, run, addTower } = useLayout();
@@ -31,7 +31,7 @@ button {
 .layout {
     min-width: 1200px;
     min-height: 900px;
-    padding: 24px;
+    padding: 160px 24px;
     background-image: url(@/assets/bg.png);
     background-repeat: no-repeat;
     background-size: contain;
