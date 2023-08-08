@@ -3,6 +3,10 @@ type Coord = {
     x: number;
     y: number;
 };
+type Size = {
+    width: number;
+    height: number;
+};
 
 /**
  * 检测点是否在圆内
@@ -90,4 +94,23 @@ export function calcAngleByPoint(startPoint: Coord, endPoint: Coord) {
     const angleRad = Math.atan2(dy, dx);
     // 将弧度转换为角度
     return angleRad * (180 / Math.PI);
+}
+
+/**
+ * 检测点是否落在矩形内
+ * @param {Coord} targetPoint: 移动的距离
+ * @param {Coord} rectPoint: 起始点
+ * @param {Coord} rectSize: 终点
+ */
+export function checkPointInRect(
+    targetPoint: Coord,
+    rectPoint: Coord,
+    rectSize: Size
+): boolean {
+    return (
+        targetPoint.x >= rectPoint.x &&
+        targetPoint.x <= rectPoint.x + rectSize.width &&
+        targetPoint.y >= rectPoint.y &&
+        targetPoint.y <= rectPoint.y + rectSize.height
+    );
 }

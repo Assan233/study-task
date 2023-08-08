@@ -83,6 +83,7 @@ function onBuild(info: TowerInfo) {
             background-image: url(../../assets/menu_coast.png);
             background-repeat: no-repeat;
             background-size: contain;
+            user-select: none;
         }
     }
 }

@@ -3,13 +3,12 @@ import { Tower_A, Tower_B } from "@/const";
 import { useGlobalStore } from "@/stores";
 import { readAllSprite, loadImage } from "@/utils";
 import pick from "lodash/pick";
-import { ref } from "vue";
+import type { Coord } from "@/service/type";
 
 type TowerInfo = { coast: number; url: string };
 
 export function useTower() {
     const global = useGlobalStore();
-    const menuVisible = ref(false);
 
     /**
      * 防御塔初始化
@@ -73,26 +72,34 @@ export function useTower() {
     }
 
     /**
+     * 构建防御塔
      * @param {string} info:TowerInfo
      */
     function onBuild(info: TowerInfo) {
+        const setCoord = (coord: Coord) => {
+            coord.x = global.menuCoord.x;
+            coord.y = global.menuCoord.y;
+        };
         switch (info.coast) {
             case 50:
+                setCoord(Tower_A.coord);
                 addTower(Tower_A);
                 break;
             case 100:
+                setCoord(Tower_A.coord);
                 addTower(Tower_A);
                 break;
             case 150:
+                setCoord(Tower_B.coord);
                 addTower(Tower_B);
                 break;
         }
+
+        global.menuVisible = false;
     }
 
     return {
-        addTower,
-        drawTowers,
         onBuild,
-        menuVisible,
+        drawTowers,
     };
 }

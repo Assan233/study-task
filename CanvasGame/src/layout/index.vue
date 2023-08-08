@@ -6,9 +6,9 @@
     <!-- 渲染画布 -->
     <div class="layout">
         <!-- 画布 -->
-        <canvas></canvas>
+        <canvas @click="onClickLayout"></canvas>
         <!-- 防御塔菜单 -->
-        <TowerMenu :visible="menuVisible" @build="onBuild" />
+        <TowerMenu :visible="global.menuVisible" @build="onBuild" />
     </div>
 </template>
 
@@ -18,7 +18,7 @@ import TowerMenu from "@/components/menu/index.vue";
 
 import useLayout from "./index";
 
-const { init, run, menuVisible, onBuild } = useLayout();
+const { init, run, onBuild, onClickLayout, global } = useLayout();
 onMounted(() => {
     init();
 });
@@ -35,7 +35,6 @@ button {
 .layout {
     min-width: 1200px;
     min-height: 900px;
-    padding: 160px 24px;
     background-image: url(@/assets/bg.png);
     background-repeat: no-repeat;
     background-size: contain;

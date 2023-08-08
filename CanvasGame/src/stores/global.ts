@@ -1,4 +1,4 @@
-import type { IMonster, IGameMap, ITower } from "@/service/type";
+import type { IMonster, IGameMap, ITower, Coord } from "@/service/type";
 
 import { defineStore } from "pinia";
 
@@ -13,6 +13,10 @@ type StateType = {
     // 攻击塔实例列表
     towerList: Set<ITower>;
     gameMap: IGameMap;
+
+    // 菜单
+    menuVisible: boolean;
+    menuCoord: Coord;
 };
 
 export const useGlobalStore = defineStore("global", {
@@ -22,6 +26,8 @@ export const useGlobalStore = defineStore("global", {
         monsterList: new Set(),
         towerList: new Set(),
         gameMap: null!,
+        menuVisible: false,
+        menuCoord: { x: 0, y: 0 },
     }),
     actions: {
         getMonsterList() {

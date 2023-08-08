@@ -11,4 +11,5 @@ export type IMonster = {
     springItemSize: Size;
     draw(nextMapItem: Omit<MonsterCoord, "index">): void;
     damage(damage: number): void;
+    get computedCoord(): Coord;
 };

@@ -4,12 +4,14 @@ import { useGlobalStore } from "@/stores";
 import { useMap } from "./map";
 import { useMonster } from "./monster";
 import { useTower } from "./tower";
+import { useMenu } from "./menu";
 
 export default function useLayout() {
     const global = useGlobalStore();
     const { initMap, dragMap } = useMap();
     const { createMonsters, drawMonster } = useMonster();
-    const { onBuild, drawTowers, menuVisible } = useTower();
+    const { onBuild, drawTowers } = useTower();
+    const { onClickLayout } = useMenu();
 
     /**
      * 初始化
@@ -61,5 +63,5 @@ export default function useLayout() {
         draw();
     }
 
-    return { init, run, onBuild, menuVisible };
+    return { init, run, onBuild, onClickLayout, global };
 }

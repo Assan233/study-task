@@ -22,29 +22,29 @@ export const LAYOUT_SIZE = {
 export const MAP_ITEM_SIZE = 60;
 
 export const MAP_DATA = [
-    { x: 0, y: 0 },
-    { x: MAP_ITEM_SIZE * 1, y: 0 },
-    { x: MAP_ITEM_SIZE * 2, y: 0 },
-    { x: MAP_ITEM_SIZE * 3, y: 0 },
-    { x: MAP_ITEM_SIZE * 4, y: 0 },
-    { x: MAP_ITEM_SIZE * 5, y: 0 },
-    { x: MAP_ITEM_SIZE * 6, y: 0 },
-    { x: MAP_ITEM_SIZE * 7, y: 0 },
-    { x: MAP_ITEM_SIZE * 8, y: 0 },
-    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 1 },
-    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 2 },
-    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 3 },
-    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 4 },
-    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 5 },
-    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 6 },
-    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 7 },
-    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 8 },
-    { x: MAP_ITEM_SIZE * 9, y: MAP_ITEM_SIZE * 8 },
-    { x: MAP_ITEM_SIZE * 10, y: MAP_ITEM_SIZE * 8 },
-    { x: MAP_ITEM_SIZE * 11, y: MAP_ITEM_SIZE * 8 },
-    { x: MAP_ITEM_SIZE * 12, y: MAP_ITEM_SIZE * 8 },
-    { x: MAP_ITEM_SIZE * 13, y: MAP_ITEM_SIZE * 8 },
-    { x: MAP_ITEM_SIZE * 14, y: MAP_ITEM_SIZE * 8 },
+    { x: 0, y: 150 },
+    { x: MAP_ITEM_SIZE * 1, y: 150 },
+    { x: MAP_ITEM_SIZE * 2, y: 150 },
+    { x: MAP_ITEM_SIZE * 3, y: 150 },
+    { x: MAP_ITEM_SIZE * 4, y: 150 },
+    { x: MAP_ITEM_SIZE * 5, y: 150 },
+    { x: MAP_ITEM_SIZE * 6, y: 150 },
+    { x: MAP_ITEM_SIZE * 7, y: 150 },
+    { x: MAP_ITEM_SIZE * 8, y: 150 },
+    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 1 + 150 },
+    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 2 + 150 },
+    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 3 + 150 },
+    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 4 + 150 },
+    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 5 + 150 },
+    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 6 + 150 },
+    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 7 + 150 },
+    { x: MAP_ITEM_SIZE * 8, y: MAP_ITEM_SIZE * 8 + 150 },
+    { x: MAP_ITEM_SIZE * 9, y: MAP_ITEM_SIZE * 8 + 150 },
+    { x: MAP_ITEM_SIZE * 10, y: MAP_ITEM_SIZE * 8 + 150 },
+    { x: MAP_ITEM_SIZE * 11, y: MAP_ITEM_SIZE * 8 + 150 },
+    { x: MAP_ITEM_SIZE * 12, y: MAP_ITEM_SIZE * 8 + 150 },
+    { x: MAP_ITEM_SIZE * 13, y: MAP_ITEM_SIZE * 8 + 150 },
+    { x: MAP_ITEM_SIZE * 14, y: MAP_ITEM_SIZE * 8 + 150 },
 ];
 export const TOWER_MAP_DATA = [
     { x: MAP_ITEM_SIZE * 2, y: MAP_ITEM_SIZE * 1 + 10 },
@@ -55,15 +55,15 @@ export const TOWER_MAP_DATA = [
 
 export const MENU_DATA = [
     { coast: 50, url: menuA },
-    { coast: 100, url: menuB },
-    { coast: 150, url: menuC },
+    { coast: 100, url: menuC },
+    { coast: 150, url: menuB },
     { coast: 0, url: menuD },
 ];
 
 export const MONSTER_A = {
     speed: 2,
     blood: 100,
-    coord: { index: 0, x: 0, y: 0 },
+    coord: { index: 0, x: 0, y: 150 },
     assets: {
         url: monsterSpringA,
         col: 2,
@@ -75,8 +75,8 @@ export const MONSTER_A = {
 
 export const MONSTER_B = {
     speed: 4,
-    blood: 0,
-    coord: { index: 0, x: 0, y: 0 },
+    blood: 150,
+    coord: { index: 0, x: 0, y: 150 },
     assets: {
         url: monsterSpringB,
         col: 2,
@@ -92,7 +92,7 @@ export const Tower_A = {
     speed: 5,
     damage: 15,
     fireRate: 2000,
-    coord: { x: 100, y: 350 },
+    coord: { x: 0, y: 0 },
     assets: {
         tower: towerA,
         bullet: {
@@ -113,11 +113,11 @@ export const Tower_A = {
 };
 export const Tower_B = {
     range: 300,
-    damageRange: 0,
+    damageRange: 150,
     speed: 5,
     damage: 15,
     fireRate: 3000,
-    coord: { x: 300, y: 350 },
+    coord: { x: 0, y: 0 },
     assets: {
         tower: towerB,
         bullet: {

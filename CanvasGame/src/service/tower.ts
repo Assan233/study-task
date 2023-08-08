@@ -7,8 +7,9 @@ import type {
 } from "./type";
 
 import { checkInRange } from "@/utils";
-import { Bullet } from "./bullet";
+import cloneDeep from "lodash/cloneDeep";
 
+import { Bullet } from "./bullet";
 import { Base } from "./base";
 
 export class Tower extends Base {
@@ -41,7 +42,8 @@ export class Tower extends Base {
         super();
         this.initLayout();
 
-        Object.assign(this, config);
+        Object.assign(this, cloneDeep(config));
+        document.body.appendChild(this.context.canvas);
     }
 
     /**
@@ -73,7 +75,7 @@ export class Tower extends Base {
         this.targetList = new Set();
 
         const matchTargets = this.getRangeTarget(targets);
-        matchTargets.map((target) => this.targetList.add(target));
+        matchTargets.forEach((target) => this.targetList.add(target));
     }
 
     /**
@@ -81,6 +83,7 @@ export class Tower extends Base {
      * @param {string} targets:IMonster[]
      */
     private getRangeTarget(targets: IMonster[]): IMonster[] {
+        // TODO:test
         this.context.arc(
             this.coord.x,
             this.coord.y,
@@ -88,13 +91,11 @@ export class Tower extends Base {
             0,
             Math.PI * 2
         );
-
-        // TODO:test
         this.context.strokeStyle = "red";
         this.context.stroke();
 
         return targets.filter((target) =>
-            checkInRange(this.context, this.coord, target.coord, this.range)
+            checkInRange(this.context, this.coord, target.computedCoord, this.range)
         );
     }
 
@@ -103,7 +104,10 @@ export class Tower extends Base {
      */
     attackTargets() {
         // 控制射速
-        if (Date.now() - this.lastAttackTime >= this.fireRate) {
+        if (
+            Date.now() - this.lastAttackTime >= this.fireRate &&
+            this.targetList.size
+        ) {
             this.addBullet();
             this.lastAttackTime = Date.now();
         }
