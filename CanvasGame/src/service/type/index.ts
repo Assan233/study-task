@@ -12,3 +12,15 @@ export type Size = {
     width: number;
     height: number;
 };
+
+export type SpringAssets = {
+    images: HTMLCanvasElement[];
+    itemSize: Size;
+};
+
+export type SpringAssetsInfo = SpringAssets & {
+    // 当前播放雪碧图index
+    index: number;
+    // 缓存播放帧的时间
+    springDate: number;
+};

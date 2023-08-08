@@ -69,34 +69,46 @@ export const MONSTER_B = {
 };
 
 export const Tower_A = {
-    range: 200,
+    range: 300,
     damageRange: 60,
     speed: 5,
     damage: 15,
     fireRate: 2000,
-    coord: { x: 150, y: 250 },
+    coord: { x: 100, y: 350 },
     assets: {
         tower: towerA,
-        bullet: bulletA,
+        bullet: {
+            url: bulletA,
+            col: 3,
+            row: 6,
+            width: 30,
+            height: 30,
+        },
         effect: {
             url: bulletEffectA,
             col: 2,
-            row: 2,
-            width: 64,
-            height: 64,
+            row: 4,
+            width: 50,
+            height: 50,
         },
     },
 };
 export const Tower_B = {
-    range: 250,
+    range: 300,
     damageRange: 150,
     speed: 5,
     damage: 15,
     fireRate: 3000,
-    coord: { x: 150, y: 250 },
+    coord: { x: 200, y: 350 },
     assets: {
         tower: towerB,
-        bullet: bulletB,
+        bullet: {
+            url: bulletB,
+            col: 3,
+            row: 6,
+            width: 30,
+            height: 30,
+        },
         effect: {
             url: bulletEffectB,
             col: 4,

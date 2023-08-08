@@ -1,4 +1,10 @@
-import type { TowerConfig, IMonster, Coord, IBullet } from "./type";
+import type {
+    TowerConfig,
+    IMonster,
+    Coord,
+    IBullet,
+    SpringAssets,
+} from "./type";
 
 import { checkInRange } from "@/utils";
 import { Bullet } from "./bullet";
@@ -8,9 +14,9 @@ import { Base } from "./base";
 export class Tower extends Base {
     // 静态资源
     towerImage: HTMLImageElement = null!;
-    bulletImage: HTMLImageElement = null!;
     // 爆炸动图效果抽帧canvas图集
-    effectSpringImages: HTMLCanvasElement[] = [];
+    effectSpring: SpringAssets = null!;
+    bulletSpring: SpringAssets = null!;
 
     // 攻击范围-半径
     range: number = 0;
@@ -116,9 +122,9 @@ export class Tower extends Base {
                 range,
                 speed,
                 damage,
-                bulletImage,
                 damageRange,
-                effectSpringImages,
+                bulletSpring,
+                effectSpring,
             } = this;
 
             return new Bullet({
@@ -127,9 +133,9 @@ export class Tower extends Base {
                 damage,
                 damageRange,
                 target,
-                bulletImage,
                 towerCoord: this.coord,
-                effectSpringImages,
+                bulletSpring,
+                effectSpring,
             });
         });
 

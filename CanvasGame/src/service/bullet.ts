@@ -1,5 +1,11 @@
-import type { IMonster, BulletConfig, Coord, LifeCycle } from "./type";
-import { inRange } from "lodash";
+import type {
+    IMonster,
+    BulletConfig,
+    Coord,
+    LifeCycle,
+    SpringAssetsInfo,
+} from "./type";
+import { inRange, omit } from "lodash";
 import { calcMoveCoord } from "@/utils";
 import { MAP_ITEM_SIZE } from "@/const";
 
@@ -15,23 +21,35 @@ export class Bullet {
     currentCoord: Coord = null!;
     // 子弹的生命周期
     lifeCycle: LifeCycle = "flying";
-
     /**
      * 这里绑定Monster的原因是，在子弹飞行时间内，Monster位置会变化，
      * 绑定Monster可以在每次绘制帧时获取Monster实时位置，保证落点准确
      */
     target: IMonster = null!;
-    bulletImage: HTMLImageElement = null!;
-    // 爆炸动图效果抽帧canvas图集
-    effectSpringImages: HTMLCanvasElement[] = [];
-    // 当前播放雪碧图index
-    springIndex: number = -1;
-    // 缓存播放帧的时间
-    springDate: number = 0;
+
+    // 动图效果抽帧canvas图集
+    effectSpring: SpringAssetsInfo = null!;
+    bulletSpring: SpringAssetsInfo = null!;
 
     constructor(config: BulletConfig) {
-        Object.assign(this, config);
+        Object.assign(this, omit(config, "effectSpring", "bulletSpring"));
         this.currentCoord = { ...config.towerCoord };
+
+        // 处理资源
+        const defaultSpring = {
+            index: 0,
+            springDate: 0,
+        };
+        this.bulletSpring = Object.assign(
+            {},
+            defaultSpring,
+            config.bulletSpring
+        );
+        this.effectSpring = Object.assign(
+            {},
+            defaultSpring,
+            config.effectSpring
+        );
     }
 
     get targetCoord() {
@@ -55,6 +73,7 @@ export class Bullet {
             this.currentCoord,
             targetCoord
         );
+
         this.currentCoord = {
             x: (this.currentCoord.x += offset.x),
             y: (this.currentCoord.y += offset.y),
@@ -93,8 +112,21 @@ export class Bullet {
      */
     drawBullet(context: CanvasRenderingContext2D) {
         const bulletSize = 20;
+        const timeSpace = 10;
+        const { index, images, springDate } = this.bulletSpring;
+
+        if (springDate === 0) {
+            this.bulletSpring.springDate = Date.now();
+        }
+        // 满足时间间隔，切换下一帧
+        if (Date.now() - this.bulletSpring.springDate > timeSpace) {
+            this.bulletSpring.springDate = Date.now();
+            this.bulletSpring.index = (index + 1) % images.length;
+        }
+
+        const image = images[this.bulletSpring.index];
         context.drawImage(
-            this.bulletImage,
+            image,
             this.currentCoord.x,
             this.currentCoord.y,
             bulletSize,
@@ -109,13 +141,13 @@ export class Bullet {
         const timeSpace = 100;
 
         // 满足时间间隔，切换下一帧
-        if (Date.now() - this.springDate > timeSpace) {
-            this.springDate = Date.now();
-            this.springIndex += 1;
+        if (Date.now() - this.effectSpring.springDate > timeSpace) {
+            this.effectSpring.springDate = Date.now();
+            this.effectSpring.index += 1;
         }
 
         // 播放特效最后一帧，finished
-        if (this.springIndex === this.effectSpringImages.length) {
+        if (this.effectSpring.index === this.effectSpring.images.length) {
             this.turnCycle("finished");
             return;
         }
@@ -124,7 +156,8 @@ export class Bullet {
         this._drawEffect(context);
     }
     _drawEffect(context: CanvasRenderingContext2D) {
-        const image = this.effectSpringImages[this.springIndex];
+        const { index, images } = this.effectSpring;
+        const image = images[index];
 
         // 计算特效居中对齐
         const offsetX = -(this.damageRange - MAP_ITEM_SIZE) / 2;

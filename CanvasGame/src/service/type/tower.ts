@@ -1,4 +1,5 @@
 import type { IMonster } from "./monster";
+import type { SpringAssets } from "./index";
 
 export type ITower = {
     draw: (targets: IMonster[]) => void;
@@ -13,6 +14,6 @@ export type TowerConfig = {
     damageRange: number;
     coord: { x: number; y: number };
     towerImage: HTMLImageElement;
-    bulletImage: HTMLImageElement;
-    effectSpringImages: HTMLCanvasElement[];
+    bulletSpring: SpringAssets;
+    effectSpring: SpringAssets;
 };

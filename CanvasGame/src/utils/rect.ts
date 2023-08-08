@@ -81,3 +81,13 @@ export function calcMoveCoord(
         y: Math.round(moveDistance * normalizedDirectionVector[1]),
     };
 }
+
+export function calcAngleByPoint(startPoint: Coord, endPoint: Coord) {
+    // 计算两点之间的距离
+    const dx = endPoint.x - startPoint.x;
+    const dy = endPoint.y - startPoint.y;
+    // 计算旋转角度（弧度值）
+    const angleRad = Math.atan2(dy, dx);
+    // 将弧度转换为角度
+    return angleRad * (180 / Math.PI);
+}

@@ -1,5 +1,5 @@
 import type { IMonster } from "./monster";
-import { Coord } from "./index";
+import { Coord, SpringAssets } from "./index";
 
 export type LifeCycle = "flying" | "booming" | "finished";
 
@@ -21,7 +21,6 @@ export type BulletConfig = {
     towerCoord: Coord;
 
     target: IMonster;
-    bulletImage: HTMLImageElement;
-    // 爆炸动图效果抽帧canvas图集
-    effectSpringImages: HTMLCanvasElement[];
+    bulletSpring: SpringAssets;
+    effectSpring: SpringAssets;
 };

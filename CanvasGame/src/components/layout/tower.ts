@@ -2,6 +2,7 @@ import { Tower } from "@/service";
 import { Tower_A } from "@/const";
 import { useGlobalStore } from "@/stores";
 import { readAllSprite, loadImage } from "@/utils";
+import pick from "lodash/pick";
 
 export function useTower() {
     const global = useGlobalStore();
@@ -13,16 +14,26 @@ export function useTower() {
         const { range, speed, damage, coord, assets, fireRate, damageRange } =
             config;
         const { tower, bullet, effect } = assets;
-        const { url, col, row, width, height } = effect;
 
         // 静态资源初始化
-        const [towerImage, bulletImage, effectSpringImages] = await Promise.all(
-            [
+        const [towerImage, bulletSpringImages, effectSpringImages] =
+            await Promise.all([
                 loadImage(tower),
-                loadImage(bullet),
-                readAllSprite(url, row, col, width, height),
-            ]
-        );
+                readAllSprite(
+                    bullet.url,
+                    bullet.row,
+                    bullet.col,
+                    bullet.width,
+                    bullet.height
+                ),
+                readAllSprite(
+                    effect.url,
+                    effect.row,
+                    effect.col,
+                    effect.width,
+                    effect.height
+                ),
+            ]);
 
         const _tower = new Tower({
             range,
@@ -32,8 +43,14 @@ export function useTower() {
             fireRate,
             coord,
             towerImage,
-            bulletImage,
-            effectSpringImages,
+            bulletSpring: {
+                images: bulletSpringImages,
+                itemSize: pick(bullet, "height", "width"),
+            },
+            effectSpring: {
+                images: effectSpringImages,
+                itemSize: pick(effect, "height", "width"),
+            },
         });
         global.towerList.add(_tower);
     }
@@ -44,7 +61,7 @@ export function useTower() {
     function drawTowers() {
         const monsterList = global.getMonsterList();
         const towerList = [...global.towerList];
-        
+
         towerList.map((tower) => {
             tower.draw(monsterList);
             global.layoutContext.drawImage(tower.context.canvas, 0, 0);
