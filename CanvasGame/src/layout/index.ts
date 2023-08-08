@@ -1,4 +1,3 @@
-import { createCanvas } from "@/utils";
 import { LAYOUT_SIZE } from "@/const";
 import { useGlobalStore } from "@/stores";
 
@@ -10,7 +9,7 @@ export default function useLayout() {
     const global = useGlobalStore();
     const { initMap, dragMap } = useMap();
     const { createMonsters, drawMonster } = useMonster();
-    const { addTower, drawTowers } = useTower();
+    const { onBuild, drawTowers, menuVisible } = useTower();
 
     /**
      * 初始化
@@ -27,13 +26,14 @@ export default function useLayout() {
      * 初始化全局画布
      */
     function initLayout() {
-        global.layoutContext = createCanvas(LAYOUT_SIZE).getContext(
+        const canvas = document.querySelector(
+            ".layout canvas"
+        ) as HTMLCanvasElement;
+        canvas.width = LAYOUT_SIZE.width;
+        canvas.height = LAYOUT_SIZE.height;
+        global.layoutContext = canvas.getContext(
             "2d"
         ) as CanvasRenderingContext2D;
-        global.layoutSize = LAYOUT_SIZE;
-        document
-            .querySelector(".layout")
-            ?.appendChild(global.layoutContext.canvas);
     }
 
     /**
@@ -45,8 +45,8 @@ export default function useLayout() {
             global.layoutContext.clearRect(
                 0,
                 0,
-                global.layoutSize.width,
-                global.layoutSize.height
+                LAYOUT_SIZE.width,
+                LAYOUT_SIZE.height
             );
             // 绘制地图
             dragMap();
@@ -61,5 +61,5 @@ export default function useLayout() {
         draw();
     }
 
-    return { init, run, addTower };
+    return { init, run, onBuild, menuVisible };
 }

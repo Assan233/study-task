@@ -9,6 +9,11 @@ import towerB from "@/assets/tower_1.png";
 import bulletB from "@/assets/bullet_1.png";
 import bulletEffectB from "@/assets/bullet_effect_1.png";
 
+import menuA from "@/assets/menu_1.png";
+import menuB from "@/assets/menu_2.png";
+import menuC from "@/assets/menu_3.png";
+import menuD from "@/assets/menu_4.png";
+
 export const LAYOUT_SIZE = {
     width: 1200,
     height: 900,
@@ -46,6 +51,13 @@ export const TOWER_MAP_DATA = [
     { x: MAP_ITEM_SIZE * 6, y: MAP_ITEM_SIZE * 1 + 10 },
     { x: MAP_ITEM_SIZE * 9 + 10, y: MAP_ITEM_SIZE * 4 },
     { x: MAP_ITEM_SIZE * 9 + 10, y: MAP_ITEM_SIZE * 7 - 10 },
+];
+
+export const MENU_DATA = [
+    { coast: 50, url: menuA },
+    { coast: 100, url: menuB },
+    { coast: 150, url: menuC },
+    { coast: 0, url: menuD },
 ];
 
 export const MONSTER_A = {

@@ -1,20 +1,24 @@
 <template>
     <div class="handler">
         <button @click="run">Run</button>
-        <button @click="addTower(Tower_A)">Add Tower</button>
-        <button @click="addTower(Tower_B)">Add Tower 2</button>
     </div>
 
     <!-- 渲染画布 -->
-    <div class="layout"></div>
+    <div class="layout">
+        <!-- 画布 -->
+        <canvas></canvas>
+        <!-- 防御塔菜单 -->
+        <TowerMenu :visible="menuVisible" @build="onBuild" />
+    </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import useLayout from "./index";
-import { Tower_A, Tower_B } from "@/const";
+import TowerMenu from "@/components/menu/index.vue";
 
-const { init, run, addTower } = useLayout();
+import useLayout from "./index";
+
+const { init, run, menuVisible, onBuild } = useLayout();
 onMounted(() => {
     init();
 });

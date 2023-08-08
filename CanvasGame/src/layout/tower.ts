@@ -1,11 +1,15 @@
 import { Tower } from "@/service";
-import { Tower_A } from "@/const";
+import { Tower_A, Tower_B } from "@/const";
 import { useGlobalStore } from "@/stores";
 import { readAllSprite, loadImage } from "@/utils";
 import pick from "lodash/pick";
+import { ref } from "vue";
+
+type TowerInfo = { coast: number; url: string };
 
 export function useTower() {
     const global = useGlobalStore();
+    const menuVisible = ref(false);
 
     /**
      * 防御塔初始化
@@ -68,8 +72,27 @@ export function useTower() {
         });
     }
 
+    /**
+     * @param {string} info:TowerInfo
+     */
+    function onBuild(info: TowerInfo) {
+        switch (info.coast) {
+            case 50:
+                addTower(Tower_A);
+                break;
+            case 100:
+                addTower(Tower_A);
+                break;
+            case 150:
+                addTower(Tower_B);
+                break;
+        }
+    }
+
     return {
         addTower,
         drawTowers,
+        onBuild,
+        menuVisible,
     };
 }
