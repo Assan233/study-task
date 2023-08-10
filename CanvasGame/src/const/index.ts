@@ -9,6 +9,9 @@ import towerB from "@/assets/tower_1.png";
 import bulletB from "@/assets/bullet_1.png";
 import bulletEffectB from "@/assets/bullet_effect_1.png";
 
+import towerC from "@/assets/tower_2.png";
+import bulletC from "@/assets/bullet_2.png";
+
 import menuA from "@/assets/menu_1.png";
 import menuB from "@/assets/menu_2.png";
 import menuC from "@/assets/menu_3.png";
@@ -133,6 +136,31 @@ export const Tower_B = {
             row: 4,
             width: 116,
             height: 116,
+        },
+    },
+};
+export const Tower_C = {
+    range: 300,
+    damageRange: 150,
+    speed: 8,
+    damage: 5,
+    fireRate: 3000,
+    coord: { x: 0, y: 0 },
+    assets: {
+        tower: towerC,
+        bullet: {
+            url: bulletC,
+            col: 1,
+            row: 1,
+            width: 27,
+            height: 27,
+        },
+        effect: {
+            url: "",
+            col: 0,
+            row: 0,
+            width: 0,
+            height: 0,
         },
     },
 };

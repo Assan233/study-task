@@ -1,5 +1,5 @@
 import { Tower } from "@/service";
-import { Tower_A, Tower_B } from "@/const";
+import { Tower_A, Tower_B, Tower_C } from "@/const";
 import { useGlobalStore } from "@/stores";
 import { readAllSprite, loadImage } from "@/utils";
 import pick from "lodash/pick";
@@ -82,8 +82,8 @@ export function useTower() {
         };
         switch (info.coast) {
             case 50:
-                setCoord(Tower_A.coord);
-                addTower(Tower_A);
+                setCoord(Tower_C.coord);
+                addTower(Tower_C);
                 break;
             case 100:
                 setCoord(Tower_A.coord);

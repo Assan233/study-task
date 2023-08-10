@@ -30,6 +30,10 @@ export async function readAllSprite(
     width: number,
     height: number
 ): Promise<HTMLCanvasElement[]> {
+    if (!spriteUrl) {
+        return [];
+    }
+
     const spriteCanvas = document.createElement("canvas");
     spriteCanvas.width = width * spriteCols;
     spriteCanvas.height = height * spriteRows;

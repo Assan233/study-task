@@ -138,9 +138,14 @@ export class Bullet {
      * @param {CanvasRenderingContext2D} context: 防御塔画布
      */
     drawEffect(context: CanvasRenderingContext2D) {
-        const timeSpace = 100;
+        // 没有特效直接结束
+        if (this.effectSpring.images.length === 0) {
+            this.turnCycle("finished");
+            return;
+        }
 
         // 满足时间间隔，切换下一帧
+        const timeSpace = 100;
         if (Date.now() - this.effectSpring.springDate > timeSpace) {
             this.effectSpring.springDate = Date.now();
             this.effectSpring.index += 1;
