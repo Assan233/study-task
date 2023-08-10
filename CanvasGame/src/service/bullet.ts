@@ -66,8 +66,8 @@ export class Bullet {
      */
     drawBulletOnTower(context: CanvasRenderingContext2D) {
         const targetCoord = {
-            x: this.targetCoord.x + this.target.springItemSize.width / 2,
-            y: this.targetCoord.y + this.target.springItemSize.height / 2,
+            x: this.target.computedCoord.x,
+            y: this.target.computedCoord.y,
         };
         const offset = calcMoveCoord(
             this.speed,
@@ -76,8 +76,8 @@ export class Bullet {
         );
 
         this.currentCoord = {
-            x: (this.currentCoord.x += offset.x),
-            y: (this.currentCoord.y += offset.y),
+            x: this.currentCoord.x + offset.x,
+            y: this.currentCoord.y + offset.y,
         };
 
         /**
