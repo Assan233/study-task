@@ -12,30 +12,36 @@
         </div>
 
         <div class="status__right">
-            <div class="play"></div>
+            <div class="play" @click="emit('play')"></div>
         </div>
     </div>
 </template>
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { useGlobalStore } from "@/stores";
-const global = useGlobalStore();
-import playImage from "@/assets";
-
 import { STATUS_IMAGES } from "@/const";
+
+const global = useGlobalStore();
+const { coin, blood, killed } = storeToRefs(global);
+
 const status = [
     {
         url: STATUS_IMAGES[0],
-        value: global.coin,
+        value: coin,
     },
     {
         url: STATUS_IMAGES[1],
-        value: global.blood,
+        value: blood,
     },
     {
         url: STATUS_IMAGES[2],
-        value: global.killed,
+        value: killed,
     },
 ];
+
+const emit = defineEmits<{
+    (e: "play"): void;
+}>();
 </script>
 <style scoped lang="less">
 .status {
@@ -43,6 +49,8 @@ const status = [
     text-align: left;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    z-index: 99;
 
     &__left {
         &__item {
@@ -56,6 +64,7 @@ const status = [
             background-size: contain;
             margin-right: 12px;
             text-align: right;
+            user-select: none;
 
             span {
                 color: #540a21;

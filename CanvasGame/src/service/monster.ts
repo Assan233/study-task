@@ -175,8 +175,9 @@ export class Monster extends Base {
      */
     damage(damage: number) {
         this.currentBlood -= damage;
-        if (this.currentBlood <= 0) {
-            this.finished = true;
-        }
+    }
+
+    finish() {
+        this.finished = true;
     }
 }

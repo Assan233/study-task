@@ -33,9 +33,10 @@ export function useMonster() {
     function delayAddMonster(monsterList: IMonster[]) {
         let delay = 0;
         monsterList.forEach((monster) => {
-            setTimeout(() => {
+            const timer = setTimeout(() => {
                 global.monsterList.add(monster);
             }, delay);
+            global.timers.push(timer);
 
             delay += random(3 * 1000, 8 * 1000);
         });
@@ -64,8 +65,20 @@ export function useMonster() {
 
         monsterList.forEach((monster) => {
             const nextMapItem = global.gameMap.mapData[monster.coord.index + 1];
-            // if (!nextMapItem) {
-            // }
+
+            // 玩家承伤
+            if (!nextMapItem) {
+                global.damageUser();
+                monster.finish();
+                return;
+            }
+            if (monster.currentBlood <= 0) {
+                global.scoreCoin();
+                global.countKilled();
+                monster.finish();
+                return;
+            }
+
             monster.draw(nextMapItem);
             global.layoutContext.drawImage(monster.context.canvas, 0, 0);
         });

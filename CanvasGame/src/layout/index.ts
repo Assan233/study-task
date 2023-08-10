@@ -17,8 +17,9 @@ export default function useLayout() {
      * 初始化
      */
     async function play() {
-        initLayout();
+        global.clear();
 
+        initLayout();
         // 地图初始化
         global.gameMap = await initMap();
         // 创建敌人列表
@@ -61,7 +62,8 @@ export default function useLayout() {
         // 绘制防御塔
         drawTowers();
 
-        requestAnimationFrame(draw);
+        const timer = requestAnimationFrame(draw);
+        global.animationTimer = timer;
     }
 
     return { play, onBuild, onClickLayout, global };

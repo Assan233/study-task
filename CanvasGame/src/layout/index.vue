@@ -2,7 +2,7 @@
     <!-- 渲染画布 -->
     <div class="layout">
         <!-- 状态栏 -->
-        <Status />
+        <Status @play="play" />
         <!-- 画布 -->
         <canvas @click="onClickLayout"></canvas>
         <!-- 防御塔菜单 -->
