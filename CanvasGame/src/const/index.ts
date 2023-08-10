@@ -17,6 +17,12 @@ import menuB from "@/assets/menu_2.png";
 import menuC from "@/assets/menu_3.png";
 import menuD from "@/assets/menu_4.png";
 
+import statusA from "@/assets/status_0.png";
+import statusB from "@/assets/status_1.png";
+import statusC from "@/assets/status_2.png";
+
+export const STATUS_IMAGES = [statusA,statusB,statusC]
+
 export const LAYOUT_SIZE = {
     width: 1200,
     height: 900,

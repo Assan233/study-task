@@ -37,7 +37,7 @@ export function useMonster() {
                 global.monsterList.add(monster);
             }, delay);
 
-            delay += random(2000, 5000);
+            delay += random(3 * 1000, 8 * 1000);
         });
     }
 

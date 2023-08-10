@@ -136,7 +136,7 @@ export class Tower extends Base {
             (bullet) => bullet.lifeCycle !== "finished"
         );
 
-        [...this.targetList].forEach((target) => {
+        [...this.targetList].reverse().forEach((target) => {
             // 控制子弹数量
             if (bulletList.length >= bulletLimit) {
                 return;

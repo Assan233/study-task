@@ -17,6 +17,11 @@ type StateType = {
     // 菜单
     menuVisible: boolean;
     menuCoord: Coord;
+
+    // 玩家状态
+    coin: number; // 金币
+    blood: number; // 生命值
+    killed: number; // 杀死的敌人
 };
 
 export const useGlobalStore = defineStore("global", {
@@ -28,6 +33,11 @@ export const useGlobalStore = defineStore("global", {
         gameMap: null!,
         menuVisible: false,
         menuCoord: { x: 0, y: 0 },
+
+        // 玩家状态
+        coin: 0,
+        blood: 10,
+        killed: 0,
     }),
     actions: {
         getMonsterList() {
