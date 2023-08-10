@@ -4,6 +4,7 @@ import { Monster } from "@/service";
 import { readAllSprite } from "@/utils";
 import { MONSTER_A, MONSTER_B } from "@/const";
 import { useGlobalStore } from "@/stores";
+import { random, cloneDeep } from "lodash";
 
 const monsterPresets = [MONSTER_A, MONSTER_B];
 
@@ -11,20 +12,40 @@ export function useMonster() {
     const global = useGlobalStore();
 
     /**
-     * 批量创建敌人
+     * 随机生成敌人列表
+     * @param {number} count:number
      */
-    async function createMonsters(): Promise<Set<IMonster>> {
-        const monsterList = await Promise.all(
-            monsterPresets.map(createMonster)
+    function randomCreateMonsters(count: number): Promise<IMonster[]> {
+        let list = new Array(count).fill(0);
+
+        return Promise.all(
+            list.map(() => {
+                const index = random(0, monsterPresets.length - 1);
+                return createMonster(monsterPresets[index]);
+            })
         );
-        return new Set(monsterList);
+    }
+
+    /**
+     * 延迟时间往global添加 Monster
+     * @param {number} params:type
+     */
+    function delayAddMonster(monsterList: IMonster[]) {
+        let delay = 0;
+        monsterList.forEach((monster) => {
+            setTimeout(() => {
+                global.monsterList.add(monster);
+            }, delay);
+
+            delay += random(2000, 5000);
+        });
     }
 
     /**
      * 创建敌人
      */
     async function createMonster(data: typeof MONSTER_A): Promise<IMonster> {
-        const { speed, blood, coord, assets } = data;
+        const { speed, blood, coord, assets } = cloneDeep(data);
         const { url, width, height, col, row } = assets;
 
         const springImages = await readAllSprite(url, col, row, width, height);
@@ -52,6 +73,7 @@ export function useMonster() {
 
     return {
         drawMonster,
-        createMonsters,
+        randomCreateMonsters,
+        delayAddMonster,
     };
 }

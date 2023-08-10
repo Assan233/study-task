@@ -9,21 +9,26 @@ import { useMenu } from "./menu";
 export default function useLayout() {
     const global = useGlobalStore();
     const { initMap, dragMap } = useMap();
-    const { createMonsters, drawMonster } = useMonster();
+    const { randomCreateMonsters, drawMonster, delayAddMonster } = useMonster();
     const { onBuild, drawTowers } = useTower();
     const { onClickLayout } = useMenu();
 
     /**
      * 初始化
      */
-    async function init() {
+    async function play() {
         initLayout();
 
         // 地图初始化
         global.gameMap = await initMap();
         // 创建敌人列表
-        global.monsterList = await createMonsters();
+        const monsterList = await randomCreateMonsters(10);
+        delayAddMonster(monsterList);
+
+        // 开始绘制
+        draw();
     }
+
     /**
      * 初始化全局画布
      */
@@ -41,27 +46,23 @@ export default function useLayout() {
     /**
      * 渲染地图/敌人/攻击塔
      */
-    function run() {
-        const draw = () => {
-            // 清空全局画布
-            global.layoutContext.clearRect(
-                0,
-                0,
-                LAYOUT_SIZE.width,
-                LAYOUT_SIZE.height
-            );
-            // 绘制地图
-            dragMap();
-            // 绘制敌人
-            drawMonster();
-            // 绘制防御塔
-            drawTowers();
+    function draw() {
+        // 清空全局画布
+        global.layoutContext.clearRect(
+            0,
+            0,
+            LAYOUT_SIZE.width,
+            LAYOUT_SIZE.height
+        );
+        // 绘制地图
+        dragMap();
+        // 绘制敌人
+        drawMonster();
+        // 绘制防御塔
+        drawTowers();
 
-            requestAnimationFrame(draw);
-        };
-
-        draw();
+        requestAnimationFrame(draw);
     }
 
-    return { init, run, onBuild, onClickLayout, global };
+    return { play, onBuild, onClickLayout, global };
 }

@@ -63,7 +63,7 @@ export class Tower extends Base {
      */
     drawTower() {
         // TODO：塔绘制偏移先临时处理
-        const towerOffset = { x: 3, y: -32 };
+        const towerOffset = { x: 3, y: -36 };
         this.context.drawImage(
             this.towerImage,
             this.coord.x + towerOffset.x,
@@ -131,7 +131,17 @@ export class Tower extends Base {
      * 根据目标初始化子弹实例
      */
     private addBullet() {
-        const bulletList = [...this.targetList].map((target) => {
+        const bulletLimit = 3;
+        const bulletList = this.bulletList.filter(
+            (bullet) => bullet.lifeCycle !== "finished"
+        );
+
+        [...this.targetList].forEach((target) => {
+            // 控制子弹数量
+            if (bulletList.length >= bulletLimit) {
+                return;
+            }
+
             const {
                 range,
                 speed,
@@ -141,7 +151,7 @@ export class Tower extends Base {
                 effectSpring,
             } = this;
 
-            return new Bullet({
+            const bullet = new Bullet({
                 range,
                 speed,
                 damage,
@@ -151,9 +161,11 @@ export class Tower extends Base {
                 bulletSpring,
                 effectSpring,
             });
+
+            bulletList.push(bullet);
         });
 
-        this.bulletList = [...this.bulletList, ...bulletList];
+        this.bulletList = bulletList;
     }
 
     /**

@@ -6,7 +6,7 @@ import type {
     SpringAssetsInfo,
 } from "./type";
 import { inRange, omit } from "lodash";
-import { calcMoveCoord, calcAngleByPoint } from "@/utils";
+import { calcMoveCoord, calcAngleByPoint, calcDistance } from "@/utils";
 import { MAP_ITEM_SIZE } from "@/const";
 
 export class Bullet {
@@ -83,11 +83,8 @@ export class Bullet {
         /**
          * 子弹到达终点
          */
-        const isReach = inRange(
-            Math.abs(offset.distance),
-            0,
-            this.targetSpeed + 1
-        );
+        const newDistance = calcDistance(this.currentCoord, targetCoord);
+        const isReach = inRange(Math.abs(newDistance), 0, this.targetSpeed + 1);
         if (isReach) {
             // 到达终点先计算敌人承伤
             if (this.lifeCycle === "flying") {
@@ -152,6 +149,15 @@ export class Bullet {
             bulletSize
         );
         context.restore();
+
+        // TODO: test
+        // context.strokeRect(
+        //     this.currentCoord.x,
+        //     this.currentCoord.y,
+        //     bulletSize,
+        //     bulletSize
+        // );
+        // context.stroke();
     }
     /**
      *  绘制爆炸特效
@@ -165,7 +171,7 @@ export class Bullet {
         }
 
         // 满足时间间隔，切换下一帧
-        const timeSpace = 100;
+        const timeSpace = 60;
         if (Date.now() - this.effectSpring.springDate > timeSpace) {
             this.effectSpring.springDate = Date.now();
             this.effectSpring.index += 1;

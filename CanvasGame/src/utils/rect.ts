@@ -63,7 +63,7 @@ export function calcMoveCoord(
     moveDistance: number,
     startPoint: Coord,
     endPoint: Coord
-): Coord & { distance: number } {
+): Coord  {
     // 连接线的方向向量
     const directionVector = [
         endPoint.x - startPoint.x,
@@ -80,10 +80,23 @@ export function calcMoveCoord(
     ];
 
     return {
-        distance,
         x: Math.round(moveDistance * normalizedDirectionVector[0]),
         y: Math.round(moveDistance * normalizedDirectionVector[1]),
     };
+}
+
+/**
+ * 计算2点间距离
+ * @param {any} startPoint:Coord
+ * @param {any} endPoint:Coord
+ */
+export function calcDistance(startPoint: Coord, endPoint: Coord): number {
+    const directionVector = [
+        endPoint.x - startPoint.x,
+        endPoint.y - startPoint.y,
+    ];
+    // 连接线的长度
+    return Math.sqrt(directionVector[0] ** 2 + directionVector[1] ** 2);
 }
 
 export function calcAngleByPoint(startPoint: Coord, endPoint: Coord) {

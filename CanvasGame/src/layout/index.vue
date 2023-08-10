@@ -1,6 +1,6 @@
 <template>
     <div class="handler">
-        <button @click="run">Run</button>
+        <button @click="play">Run</button>
     </div>
 
     <!-- 渲染画布 -->
@@ -13,15 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
 import TowerMenu from "@/components/menu/index.vue";
-
 import useLayout from "./index";
 
-const { init, run, onBuild, onClickLayout, global } = useLayout();
-onMounted(() => {
-    init();
-});
+const { play, onBuild, onClickLayout, global } = useLayout();
 </script>
 
 <style scoped>
