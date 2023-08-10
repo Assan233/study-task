@@ -2,11 +2,11 @@ import type { IMonster } from "@/service/type";
 
 import { Monster } from "@/service";
 import { readAllSprite } from "@/utils";
-import { MONSTER_A, MONSTER_B } from "@/const";
+import { MONSTER_A, MONSTER_B, MONSTER_C } from "@/const";
 import { useGlobalStore } from "@/stores";
 import { random, cloneDeep } from "lodash";
 
-const monsterPresets = [MONSTER_A, MONSTER_B];
+const monsterPresets = [MONSTER_A, MONSTER_B, MONSTER_C];
 
 export function useMonster() {
     const global = useGlobalStore();
@@ -72,7 +72,7 @@ export function useMonster() {
                 monster.finish();
                 return;
             }
-            
+
             // 玩家得分
             if (monster.currentBlood <= 0) {
                 global.scoreCoin();
