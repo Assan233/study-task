@@ -140,7 +140,7 @@ export const Tower_B = {
     },
 };
 export const Tower_C = {
-    range: 300,
+    range: 600,
     damageRange: 150,
     speed: 8,
     damage: 5,

@@ -6,7 +6,7 @@ import type {
     SpringAssetsInfo,
 } from "./type";
 import { inRange, omit } from "lodash";
-import { calcMoveCoord } from "@/utils";
+import { calcMoveCoord, calcAngleByPoint } from "@/utils";
 import { MAP_ITEM_SIZE } from "@/const";
 
 export class Bullet {
@@ -14,6 +14,7 @@ export class Bullet {
     range: number = 0;
     // 子弹速度
     speed: number = 0;
+    angle: number = null!;
     // 伤害
     damage: number = 0;
     damageRange: number = 0;
@@ -124,7 +125,25 @@ export class Bullet {
             this.bulletSpring.index = (index + 1) % images.length;
         }
 
+        /**
+         * 绘制子弹
+         */
+        if (!this.angle) {
+            this.angle = calcAngleByPoint(this.currentCoord, this.targetCoord);
+        }
+
         const image = images[this.bulletSpring.index];
+        // 旋转子弹
+        context.save();
+        context.translate(
+            this.currentCoord.x + bulletSize / 2,
+            this.currentCoord.y + bulletSize / 2
+        );
+        context.rotate(this.angle);
+        context.translate(
+            -(this.currentCoord.x + bulletSize / 2),
+            -(this.currentCoord.y + bulletSize / 2)
+        );
         context.drawImage(
             image,
             this.currentCoord.x,
@@ -132,6 +151,7 @@ export class Bullet {
             bulletSize,
             bulletSize
         );
+        context.restore();
     }
     /**
      *  绘制爆炸特效

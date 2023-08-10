@@ -3,6 +3,11 @@ type Size = {
     height: number;
 };
 
+type Coord = {
+    x: number;
+    y: number;
+};
+
 /**
  * 加载图片
  * @param {string} url:string
