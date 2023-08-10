@@ -43,7 +43,6 @@ export class Tower extends Base {
         this.initLayout();
 
         Object.assign(this, cloneDeep(config));
-        document.body.appendChild(this.context.canvas);
     }
 
     /**
@@ -63,7 +62,13 @@ export class Tower extends Base {
      * 攻击塔绘制
      */
     drawTower() {
-        this.context.drawImage(this.towerImage, this.coord.x, this.coord.y);
+        // TODO：塔绘制偏移先临时处理
+        const towerOffset = { x: 3, y: -32 };
+        this.context.drawImage(
+            this.towerImage,
+            this.coord.x + towerOffset.x,
+            this.coord.y + towerOffset.y
+        );
     }
 
     /**
@@ -95,7 +100,12 @@ export class Tower extends Base {
         this.context.stroke();
 
         return targets.filter((target) =>
-            checkInRange(this.context, this.coord, target.computedCoord, this.range)
+            checkInRange(
+                this.context,
+                this.coord,
+                target.computedCoord,
+                this.range
+            )
         );
     }
 

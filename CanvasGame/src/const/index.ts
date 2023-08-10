@@ -47,8 +47,8 @@ export const MAP_DATA = [
     { x: MAP_ITEM_SIZE * 14, y: MAP_ITEM_SIZE * 8 + 150 },
 ];
 export const TOWER_MAP_DATA = [
-    { x: MAP_ITEM_SIZE * 2, y: MAP_ITEM_SIZE * 1 + 10 },
-    { x: MAP_ITEM_SIZE * 6, y: MAP_ITEM_SIZE * 1 + 10 },
+    { x: MAP_ITEM_SIZE * 2, y: MAP_ITEM_SIZE * 1 + 160 },
+    { x: MAP_ITEM_SIZE * 6, y: MAP_ITEM_SIZE * 1 + 160 },
     { x: MAP_ITEM_SIZE * 9 + 10, y: MAP_ITEM_SIZE * 4 },
     { x: MAP_ITEM_SIZE * 9 + 10, y: MAP_ITEM_SIZE * 7 - 10 },
 ];
@@ -89,7 +89,7 @@ export const MONSTER_B = {
 export const Tower_A = {
     range: 300,
     damageRange: 60,
-    speed: 5,
+    speed: 6,
     damage: 15,
     fireRate: 2000,
     coord: { x: 0, y: 0 },
@@ -114,7 +114,7 @@ export const Tower_A = {
 export const Tower_B = {
     range: 300,
     damageRange: 150,
-    speed: 5,
+    speed: 8,
     damage: 15,
     fireRate: 3000,
     coord: { x: 0, y: 0 },

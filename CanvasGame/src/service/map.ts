@@ -31,9 +31,9 @@ export class GameMap {
      */
     draw() {
         // 绘制地图路径
-        this.towerMapData.forEach(({ x, y }) => {
+        this.mapData.forEach(({ x, y }) => {
             this.context.drawImage(
-                this.towerMapAssets,
+                this.assets,
                 x,
                 y,
                 this.itemSize,
@@ -42,9 +42,9 @@ export class GameMap {
         });
 
         // 绘制地图防御塔占位贴图
-        this.mapData.forEach(({ x, y }) => {
+        this.towerMapData.forEach(({ x, y }) => {
             this.context.drawImage(
-                this.assets,
+                this.towerMapAssets,
                 x,
                 y,
                 this.itemSize,

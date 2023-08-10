@@ -49,8 +49,12 @@ export function useMenu() {
     function renderMenu(coord: Coord) {
         global.menuVisible = !global.menuVisible;
         const menu = document.querySelector(".layout .menu") as HTMLDivElement;
-        menu.style.left = `${coord.x - 4}px`;
-        menu.style.top = `${coord.y + 30}px`;
+        const menuSize = 135;
+
+        const offsetX = coord.x - (menuSize - MAP_ITEM_SIZE) / 2;
+        const offsetY = coord.y - (menuSize - MAP_ITEM_SIZE) / 2;
+        menu.style.left = `${offsetX}px`;
+        menu.style.top = `${offsetY - 6}px`;
     }
 
     return {

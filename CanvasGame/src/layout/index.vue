@@ -33,6 +33,7 @@ button {
     margin: 0 16px;
 }
 .layout {
+    position: relative;
     min-width: 1200px;
     min-height: 900px;
     background-image: url(@/assets/bg.png);
