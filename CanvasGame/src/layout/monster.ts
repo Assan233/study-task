@@ -72,6 +72,8 @@ export function useMonster() {
                 monster.finish();
                 return;
             }
+            
+            // 玩家得分
             if (monster.currentBlood <= 0) {
                 global.scoreCoin();
                 global.countKilled();
