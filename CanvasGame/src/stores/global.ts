@@ -41,7 +41,7 @@ export const useGlobalStore = defineStore("global", {
         menuCoord: { x: 0, y: 0 },
 
         // 玩家状态
-        coin: 200,
+        coin: 350,
         blood: 10,
         killed: 0,
     }),
@@ -64,7 +64,7 @@ export const useGlobalStore = defineStore("global", {
             Object.assign(this, {
                 monsterList: new Set(),
                 towerList: new Set(),
-                coin: 200,
+                coin: 350,
                 blood: 10,
                 killed: 0,
                 animationTimer: null!,

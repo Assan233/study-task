@@ -107,16 +107,16 @@ export class Tower extends Base {
             y: this.coord.y + MAP_ITEM_SIZE / 2,
         };
 
-        // TODO:test
-        this.context.arc(
-            towerCoord.x,
-            towerCoord.y,
-            this.range,
-            0,
-            Math.PI * 2
-        );
-        this.context.strokeStyle = "red";
-        this.context.stroke();
+        // TODO: test
+        // this.context.arc(
+        //     towerCoord.x,
+        //     towerCoord.y,
+        //     this.range,
+        //     0,
+        //     Math.PI * 2
+        // );
+        // this.context.strokeStyle = "red";
+        // this.context.stroke();
 
         return targets.filter((target) =>
             checkInRange(
