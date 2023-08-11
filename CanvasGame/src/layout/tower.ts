@@ -80,6 +80,13 @@ export function useTower() {
             coord.x = global.menuCoord.x;
             coord.y = global.menuCoord.y;
         };
+
+        if (info.coast > global.coin) {
+            console.warn("金币不足~~");
+            global.menuVisible = false;
+            return;
+        }
+
         switch (info.coast) {
             case 50:
                 setCoord(Tower_C.coord);
@@ -95,6 +102,7 @@ export function useTower() {
                 break;
         }
 
+        global.coastCoin(info.coast);
         global.menuVisible = false;
     }
 

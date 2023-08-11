@@ -41,7 +41,7 @@ export const useGlobalStore = defineStore("global", {
         menuCoord: { x: 0, y: 0 },
 
         // 玩家状态
-        coin: 0,
+        coin: 200,
         blood: 10,
         killed: 0,
     }),
@@ -64,7 +64,7 @@ export const useGlobalStore = defineStore("global", {
             Object.assign(this, {
                 monsterList: new Set(),
                 towerList: new Set(),
-                coin: 0,
+                coin: 200,
                 blood: 10,
                 killed: 0,
                 animationTimer: null!,
@@ -84,7 +84,13 @@ export const useGlobalStore = defineStore("global", {
             const coin = 8;
             this.coin += coin;
         },
-        
+        /**
+         * 消费金币
+         */
+        coastCoin(coin: number) {
+            this.coin -= coin;
+        },
+
         /**
          * 统计杀死的敌人
          */
