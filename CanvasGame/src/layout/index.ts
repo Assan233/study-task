@@ -9,7 +9,7 @@ import { useMenu } from "./menu";
 export default function useLayout() {
     const global = useGlobalStore();
     const { initMap, dragMap } = useMap();
-    const { randomCreateMonsters, drawMonster, delayAddMonster } = useMonster();
+    const { drawMonster, delayAddMonster } = useMonster();
     const { onBuild, drawTowers } = useTower();
     const { onClickLayout } = useMenu();
 
@@ -21,11 +21,9 @@ export default function useLayout() {
 
         initLayout();
         // 地图初始化
-        global.gameMap = await initMap();
+        await initMap();
         // 创建敌人列表
-        const monsterList = await randomCreateMonsters(10);
-        delayAddMonster(monsterList);
-
+        await delayAddMonster(100);
         // 开始绘制
         draw();
     }
@@ -47,7 +45,12 @@ export default function useLayout() {
     /**
      * 渲染地图/敌人/攻击塔
      */
-    function draw() {
+    async function draw() {
+        // global.clearMonsterList();
+        // if (global.monsterList.size === 0) {
+        //     await delayAddMonster(8);
+        // }
+
         // 清空全局画布
         global.layoutContext.clearRect(
             0,

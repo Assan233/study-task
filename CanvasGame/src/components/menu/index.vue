@@ -6,7 +6,11 @@
             :style="getStyle(index, build.url)"
             @click="onBuild(build)"
         >
-            <span class="menu__item__text">{{ build.coast }}</span>
+            <span
+                class="menu__item__text"
+                :style="coin < build.coast ? { color: 'red' } : {}"
+                >{{ build.coast }}</span
+            >
         </div>
     </div>
 </template>
@@ -19,6 +23,7 @@ type TowerInfo = { coast: number; url: string };
 
 defineProps<{
     visible: boolean;
+    coin: number;
 }>();
 
 const emit = defineEmits<{

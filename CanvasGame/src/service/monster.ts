@@ -112,7 +112,7 @@ export class Monster extends Base {
         switch (direct) {
             case "left":
                 this.coord.x -= this.speed;
-                if (this.coord.x <= nextMapItem.x + MAP_ITEM_SIZE) {
+                if (this.coord.x <= nextMapItem.x ) {
                     this.coord.index += 1;
                 }
                 break;
@@ -124,7 +124,7 @@ export class Monster extends Base {
                 break;
             case "top":
                 this.coord.y -= this.speed;
-                if (this.coord.y <= nextMapItem.y + MAP_ITEM_SIZE) {
+                if (this.coord.y <= nextMapItem.y ) {
                     this.coord.index += 1;
                 }
                 break;

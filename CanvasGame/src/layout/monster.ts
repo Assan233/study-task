@@ -2,11 +2,11 @@ import type { IMonster } from "@/service/type";
 
 import { Monster } from "@/service";
 import { readAllSprite } from "@/utils";
-import { MONSTER_A, MONSTER_B, MONSTER_C } from "@/const";
+import { MONSTER_A, MONSTER_B, MONSTER_C, MONSTER_D } from "@/const";
 import { useGlobalStore } from "@/stores";
 import { random, cloneDeep } from "lodash";
 
-const monsterPresets = [MONSTER_A, MONSTER_B, MONSTER_C];
+const monsterPresets = [MONSTER_A, MONSTER_B, MONSTER_C, MONSTER_D];
 
 export function useMonster() {
     const global = useGlobalStore();
@@ -28,9 +28,11 @@ export function useMonster() {
 
     /**
      * 延迟时间往global添加 Monster
-     * @param {number} params:type
+     * @param {number} count:type
      */
-    function delayAddMonster(monsterList: IMonster[]) {
+    async function delayAddMonster(count: number) {
+        const monsterList = await randomCreateMonsters(count);
+
         let delay = 0;
         monsterList.forEach((monster) => {
             const timer = setTimeout(() => {
@@ -38,7 +40,7 @@ export function useMonster() {
             }, delay);
             global.timers.push(timer);
 
-            delay += random(3 * 1000, 8 * 1000);
+            delay += random(3 * 1000, 5 * 1000);
         });
     }
 
@@ -46,8 +48,13 @@ export function useMonster() {
      * 创建敌人
      */
     async function createMonster(data: typeof MONSTER_A): Promise<IMonster> {
-        const { speed, blood, coord, assets } = cloneDeep(data);
+        const { speed, blood, assets } = cloneDeep(data);
         const { url, width, height, col, row } = assets;
+        // 取地图第一个坐标点为起点
+        const coord = {
+            index: 0,
+            ...global.gameMap.mapData[0],
+        };
 
         const springImages = await readAllSprite(url, col, row, width, height);
         const monster = new Monster(speed, blood, coord, springImages, {

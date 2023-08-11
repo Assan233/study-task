@@ -8,7 +8,7 @@ import type {
 
 import { checkInRange } from "@/utils";
 import cloneDeep from "lodash/cloneDeep";
-
+import { MAP_ITEM_SIZE } from "@/const";
 import { Bullet } from "./bullet";
 import { Base } from "./base";
 
@@ -45,6 +45,11 @@ export class Tower extends Base {
         Object.assign(this, cloneDeep(config));
     }
 
+    get towerImageSize() {
+        const { width, height } = this.towerImage;
+        return { width, height };
+    }
+
     /**
      * 绘制 防御塔 / 子弹
      * @param {IMonster[]} targets:
@@ -69,6 +74,15 @@ export class Tower extends Base {
             this.coord.x + towerOffset.x,
             this.coord.y + towerOffset.y
         );
+
+        // TODO: test
+        // this.context.strokeRect(
+        //     this.coord.x + towerOffset.x,
+        //     this.coord.y + towerOffset.y,
+        //     this.towerImageSize.width,
+        //     this.towerImageSize.height
+        // );
+        // this.context.stroke();
     }
 
     /**
@@ -88,21 +102,26 @@ export class Tower extends Base {
      * @param {string} targets:IMonster[]
      */
     private getRangeTarget(targets: IMonster[]): IMonster[] {
-        // TODO:test
-        this.context.arc(
-            this.coord.x,
-            this.coord.y,
-            this.range,
-            0,
-            Math.PI * 2
-        );
-        this.context.strokeStyle = "red";
-        this.context.stroke();
+        const towerCoord = {
+            x: this.coord.x + MAP_ITEM_SIZE / 2,
+            y: this.coord.y + MAP_ITEM_SIZE / 2,
+        };
+
+        // TODO: test
+        // this.context.arc(
+        //     towerCoord.x,
+        //     towerCoord.y,
+        //     this.range,
+        //     0,
+        //     Math.PI * 2
+        // );
+        // this.context.strokeStyle = "red";
+        // this.context.stroke();
 
         return targets.filter((target) =>
             checkInRange(
                 this.context,
-                this.coord,
+                towerCoord,
                 target.computedCoord,
                 this.range
             )

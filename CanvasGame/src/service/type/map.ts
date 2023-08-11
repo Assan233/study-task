@@ -8,6 +8,10 @@ export type IGameMap = {
 export type MapConfig = {
     mapData: Coord[];
     towerMapData: Coord[];
+    treeMapData: Coord[];
     assets: HTMLImageElement;
     towerMapAssets: HTMLImageElement;
+    treeAssets: HTMLCanvasElement;
+    startAssets: HTMLImageElement;
+    endAssets: HTMLImageElement;
 };

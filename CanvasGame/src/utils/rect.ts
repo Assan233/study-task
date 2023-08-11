@@ -63,7 +63,7 @@ export function calcMoveCoord(
     moveDistance: number,
     startPoint: Coord,
     endPoint: Coord
-): Coord  {
+): Coord {
     // 连接线的方向向量
     const directionVector = [
         endPoint.x - startPoint.x,

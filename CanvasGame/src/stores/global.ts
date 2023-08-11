@@ -1,6 +1,6 @@
 import type { IMonster, IGameMap, ITower, Coord } from "@/service/type";
-
 import { defineStore } from "pinia";
+import random from "lodash/random";
 
 type StateType = {
     animationTimer: number;
@@ -41,11 +41,17 @@ export const useGlobalStore = defineStore("global", {
         menuCoord: { x: 0, y: 0 },
 
         // 玩家状态
-        coin: 200,
+        coin: 350,
         blood: 10,
         killed: 0,
     }),
     actions: {
+        clearMonsterList() {
+            const list = [...this.monsterList].filter(
+                (monster) => !monster.finished
+            );
+            this.monsterList = new Set(list);
+        },
         getMonsterList() {
             return [...this.monsterList].filter((monster) => !monster.finished);
         },
@@ -64,7 +70,7 @@ export const useGlobalStore = defineStore("global", {
             Object.assign(this, {
                 monsterList: new Set(),
                 towerList: new Set(),
-                coin: 200,
+                coin: 350,
                 blood: 10,
                 killed: 0,
                 animationTimer: null!,
@@ -81,7 +87,7 @@ export const useGlobalStore = defineStore("global", {
          * 玩家得分
          */
         scoreCoin() {
-            const coin = 8;
+            const coin = random(8, 20);
             this.coin += coin;
         },
         /**
