@@ -10,7 +10,7 @@ import towerC from "@/assets/tower_2.png";
 import bulletC from "@/assets/bullet_2.png";
 
 export const Tower_A = {
-    range: 300,
+    range: 150,
     damageRange: 60,
     speed: 6,
     damage: 15,
@@ -35,7 +35,7 @@ export const Tower_A = {
     },
 };
 export const Tower_B = {
-    range: 300,
+    range: 150,
     damageRange: 120,
     speed: 8,
     damage: 15,
@@ -60,7 +60,7 @@ export const Tower_B = {
     },
 };
 export const Tower_C = {
-    range: 600,
+    range: 150,
     damageRange: 60,
     speed: 8,
     damage: 5,

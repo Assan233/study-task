@@ -5,7 +5,7 @@ import monsterSpringC from "@/assets/monster_2.png";
 export const MONSTER_A = {
     speed: 2,
     blood: 100,
-    coord: { index: 0, x: 0, y: 150 },
+    coord: { index: 0, x: 0, y: 0 },
     assets: {
         url: monsterSpringA,
         col: 2,
@@ -18,7 +18,7 @@ export const MONSTER_A = {
 export const MONSTER_B = {
     speed: 4,
     blood: 150,
-    coord: { index: 0, x: 0, y: 150 },
+    coord: { index: 0, x: 0, y: 0 },
     assets: {
         url: monsterSpringB,
         col: 2,
@@ -28,9 +28,9 @@ export const MONSTER_B = {
     },
 };
 export const MONSTER_C = {
-    speed: 4,
+    speed: 6,
     blood: 200,
-    coord: { index: 0, x: 0, y: 150 },
+    coord: { index: 0, x: 0, y: 0 },
     assets: {
         url: monsterSpringC,
         col: 2,
