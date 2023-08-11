@@ -6,7 +6,7 @@
         <!-- 画布 -->
         <canvas @click="onClickLayout"></canvas>
         <!-- 防御塔菜单 -->
-        <TowerMenu :visible="global.menuVisible" @build="onBuild" />
+        <TowerMenu :coin="global.coin" :visible="global.menuVisible" @build="onBuild" />
     </div>
 </template>
 
