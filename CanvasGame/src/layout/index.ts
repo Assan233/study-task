@@ -23,7 +23,7 @@ export default function useLayout() {
         // 地图初始化
         await initMap();
         // 创建敌人列表
-        await delayAddMonster(8);
+        await delayAddMonster(100);
         // 开始绘制
         draw();
     }
