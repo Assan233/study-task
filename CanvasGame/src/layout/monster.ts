@@ -2,11 +2,11 @@ import type { IMonster } from "@/service/type";
 
 import { Monster } from "@/service";
 import { readAllSprite } from "@/utils";
-import { MONSTER_A, MONSTER_B, MONSTER_C } from "@/const";
+import { MONSTER_A, MONSTER_B, MONSTER_C, MONSTER_D } from "@/const";
 import { useGlobalStore } from "@/stores";
 import { random, cloneDeep } from "lodash";
 
-const monsterPresets = [MONSTER_A, MONSTER_B, MONSTER_C];
+const monsterPresets = [MONSTER_A, MONSTER_B, MONSTER_C, MONSTER_D];
 
 export function useMonster() {
     const global = useGlobalStore();
@@ -30,7 +30,7 @@ export function useMonster() {
      * 延迟时间往global添加 Monster
      * @param {number} count:type
      */
-   async function delayAddMonster(count: number) {
+    async function delayAddMonster(count: number) {
         const monsterList = await randomCreateMonsters(count);
 
         let delay = 0;
