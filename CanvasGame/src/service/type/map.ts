@@ -12,4 +12,6 @@ export type MapConfig = {
     assets: HTMLImageElement;
     towerMapAssets: HTMLImageElement;
     treeAssets: HTMLCanvasElement;
+    startAssets: HTMLImageElement;
+    endAssets: HTMLImageElement;
 };

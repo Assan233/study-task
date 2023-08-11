@@ -46,6 +46,12 @@ export const useGlobalStore = defineStore("global", {
         killed: 0,
     }),
     actions: {
+        clearMonsterList() {
+            const list = [...this.monsterList].filter(
+                (monster) => !monster.finished
+            );
+            this.monsterList = new Set(list);
+        },
         getMonsterList() {
             return [...this.monsterList].filter((monster) => !monster.finished);
         },

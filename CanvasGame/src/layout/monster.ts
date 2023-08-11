@@ -28,9 +28,11 @@ export function useMonster() {
 
     /**
      * 延迟时间往global添加 Monster
-     * @param {number} params:type
+     * @param {number} count:type
      */
-    function delayAddMonster(monsterList: IMonster[]) {
+   async function delayAddMonster(count: number) {
+        const monsterList = await randomCreateMonsters(count);
+
         let delay = 0;
         monsterList.forEach((monster) => {
             const timer = setTimeout(() => {
