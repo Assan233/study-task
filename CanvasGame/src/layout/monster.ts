@@ -46,8 +46,13 @@ export function useMonster() {
      * 创建敌人
      */
     async function createMonster(data: typeof MONSTER_A): Promise<IMonster> {
-        const { speed, blood, coord, assets } = cloneDeep(data);
+        const { speed, blood, assets } = cloneDeep(data);
         const { url, width, height, col, row } = assets;
+        // 取地图第一个坐标点为起点
+        const coord = {
+            index: 0,
+            ...global.gameMap.mapData[0],
+        };
 
         const springImages = await readAllSprite(url, col, row, width, height);
         const monster = new Monster(speed, blood, coord, springImages, {
