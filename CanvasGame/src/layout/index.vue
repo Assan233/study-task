@@ -34,6 +34,7 @@ button {
     background-repeat: no-repeat;
     background-size: contain;
     border: 1px solid seagreen;
+    border-radius: 12px;
 
     canvas {
         position: absolute;
