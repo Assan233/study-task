@@ -1,8 +1,9 @@
 import roadImg from "@/assets/road.jpg";
 import buildTowerImg from "@/assets/build_tower.png";
+import treeImg from "@/assets/tree.png";
 import { GameMap } from "@/service";
-import { MAP_DATA, TOWER_MAP_DATA } from "@/const";
-import { loadImage } from "@/utils";
+import { MAP_DATA, TOWER_MAP_DATA, TREE_MAP_DATA } from "@/const";
+import { loadImage, readAllSprite } from "@/utils";
 import { useGlobalStore } from "@/stores";
 
 export function useMap() {
@@ -12,15 +13,18 @@ export function useMap() {
      * 地图初始化
      */
     async function initMap() {
-        const [roadAssets, towerAssets] = await Promise.all([
+        const [roadAssets, towerAssets, treeSpring] = await Promise.all([
             loadImage(roadImg),
             loadImage(buildTowerImg),
+            readAllSprite(treeImg, 1, 3, 64, 64),
         ]);
         const gameMap = new GameMap({
             mapData: MAP_DATA,
             towerMapData: TOWER_MAP_DATA,
+            treeMapData: TREE_MAP_DATA,
             assets: roadAssets,
             towerMapAssets: towerAssets,
+            treeAssets: treeSpring[0],
         });
 
         gameMap.draw();

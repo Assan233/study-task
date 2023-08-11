@@ -9,11 +9,13 @@ export class GameMap {
     // 地图数据
     mapData: Coord[] = [];
     towerMapData: Coord[] = [];
+    treeMapData: Coord[] = [];
 
     // 路面贴图
     assets: HTMLImageElement = null!;
     // 防御塔占位贴图
     towerMapAssets: HTMLImageElement = null!;
+    treeAssets: HTMLCanvasElement = null!;
 
     // 实例渲染图层
     context: CanvasRenderingContext2D = null!;
@@ -50,6 +52,11 @@ export class GameMap {
                 this.itemSize,
                 this.itemSize
             );
+        });
+
+        // 树木绘制
+        this.treeMapData.forEach(({ x, y }) => {
+            this.context.drawImage(this.treeAssets, x, y);
         });
 
         // TODO: test

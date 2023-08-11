@@ -1,6 +1,6 @@
 import type { IMonster, IGameMap, ITower, Coord } from "@/service/type";
-
 import { defineStore } from "pinia";
+import random from "lodash/random";
 
 type StateType = {
     animationTimer: number;
@@ -81,7 +81,7 @@ export const useGlobalStore = defineStore("global", {
          * 玩家得分
          */
         scoreCoin() {
-            const coin = 8;
+            const coin = random(8, 20);
             this.coin += coin;
         },
         /**
