@@ -24,3 +24,5 @@ export type SpringAssetsInfo = SpringAssets & {
     // 缓存播放帧的时间
     springDate: number;
 };
+
+export type Direct = "left" | "right" | "top" | "bottom";

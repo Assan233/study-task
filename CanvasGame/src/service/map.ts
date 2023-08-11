@@ -51,5 +51,12 @@ export class GameMap {
                 this.itemSize
             );
         });
+
+        // TODO: test
+        // this.mapData.forEach(({ x, y }, index) => {
+        //     this.context.strokeRect(x, y, this.itemSize, this.itemSize);
+        //     this.context.stroke();
+        //     this.context.fillText(`${index}`, x + 10, y+10);
+        // });
     }
 }
