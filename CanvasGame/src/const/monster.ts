@@ -30,7 +30,7 @@ export const MONSTER_B = {
     },
 };
 export const MONSTER_C = {
-    speed: 7,
+    speed: 6,
     blood: 200,
     coord: { index: 0, x: 0, y: 0 },
     assets: {
@@ -42,7 +42,7 @@ export const MONSTER_C = {
     },
 };
 export const MONSTER_D = {
-    speed: 7,
+    speed: 6,
     blood: 250,
     coord: { index: 0, x: 0, y: 0 },
     assets: {

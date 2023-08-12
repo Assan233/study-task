@@ -121,12 +121,7 @@ export class Tower extends Base {
         // this.context.stroke();
 
         return targets.filter((target) =>
-            checkInRange(
-                this.context,
-                towerCoord,
-                target.computedCoord,
-                this.range
-            )
+            checkInRange(towerCoord, target.computedCoord, this.range)
         );
     }
 

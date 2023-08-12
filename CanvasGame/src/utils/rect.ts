@@ -10,19 +10,16 @@ type Size = {
 
 /**
  * 检测点是否在圆内
- * @param {string} ctx:CanvasRenderingContext2D
  * @param {Coord} recPoint:圆心坐标
  * @param {Coord} point:单点坐标
  * @param {number} radius:半径
  */
 export function checkInRange(
-    ctx: CanvasRenderingContext2D,
     recPoint: Coord,
     point: Coord,
     radius: number
 ): boolean {
-    ctx.arc(recPoint.x, recPoint.y, radius, 0, Math.PI * 2, false);
-    return ctx.isPointInPath(point.x, point.y);
+    return Math.hypot(point.x - recPoint.x, point.y - recPoint.y) <= radius;
 }
 
 /**
@@ -34,7 +31,7 @@ export function checkInRange(
 export function calcDirect(currentPoint: Coord, targetPoint: Coord): Direct {
     const angle = calcAngleInDegrees(currentPoint, targetPoint);
     let direct: Direct = null!;
-    
+
     // 根据2点间连接线的角度偏向，计算移动方向
     const calcMap = {
         top: () => angle >= 45 && angle < 135,
