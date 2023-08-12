@@ -11,8 +11,9 @@ export type IMonster = {
     context: CanvasRenderingContext2D;
     springItemSize: Size;
     get computedCoord(): Coord;
-    
+
     draw(nextMapItem: Omit<MonsterCoord, "index">): void;
     damage(damage: number): void;
+    slow(speed: number, time: number): void;
     finish(): void;
 };

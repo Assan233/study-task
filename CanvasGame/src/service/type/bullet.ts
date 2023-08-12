@@ -14,6 +14,7 @@ export type BulletConfig = {
     range: number;
     // 子弹速度
     speed: number;
+    slow: number;
     // 伤害
     damage: number;
     damageRange: number;

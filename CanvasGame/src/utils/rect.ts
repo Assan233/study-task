@@ -32,15 +32,12 @@ export function checkInRange(
  * @return 移动方向
  */
 export function calcDirect(currentPoint: Coord, targetPoint: Coord): Direct {
+    const angle = calcAngleInDegrees(currentPoint, targetPoint);
     const calcMap = {
-        right: () =>
-            currentPoint.x < targetPoint.x && currentPoint.y === targetPoint.y,
-        left: () =>
-            currentPoint.x > targetPoint.x && currentPoint.y === targetPoint.y,
-        top: () =>
-            currentPoint.y > targetPoint.y && currentPoint.x === targetPoint.x,
-        bottom: () =>
-            currentPoint.y < targetPoint.y && currentPoint.x === targetPoint.x,
+        top: () => angle >= 45 && angle < 135,
+        left: () => angle >= 135 && angle < 225,
+        bottom: () => angle >= 225 && angle < 315,
+        right: () => angle >= 315 || angle < 45,
     };
 
     let direct: Direct = null!;
@@ -51,6 +48,26 @@ export function calcDirect(currentPoint: Coord, targetPoint: Coord): Direct {
     });
 
     return direct;
+}
+
+/**
+ * 计算两点之间的角度（以度为单位）
+ * @param {string} currentPoint:Coord
+ * @param {string} targetPoint:Coord
+ */
+function calcAngleInDegrees(currentPoint: Coord, targetPoint: Coord) {
+    const deltaX = targetPoint.x - currentPoint.x;
+    // canvas坐标y轴 和 正常坐标系y轴 是相反的
+    const deltaY = -(targetPoint.y - currentPoint.y);
+    const radians = Math.atan2(deltaY, deltaX);
+    let degrees = radians * (180 / Math.PI);
+
+    // 确保角度在0到360度之间
+    if (degrees < 0) {
+        degrees += 360;
+    }
+
+    return degrees;
 }
 
 /**

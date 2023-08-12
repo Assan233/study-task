@@ -14,6 +14,9 @@ export class Bullet {
     range: number = 0;
     // 子弹速度
     speed: number = 0;
+    // 减速
+    slow: number = 0;
+
     angle: number = null!;
     // 伤害
     damage: number = 0;
@@ -220,7 +223,12 @@ export class Bullet {
      * 敌人承伤
      */
     handleDamage() {
+        // 承伤
         this.target.damage(this.damage);
+
+        // 减速
+        const slowTime = 3000;
+        this.target.slow(this.slow, slowTime);
     }
 
     /**

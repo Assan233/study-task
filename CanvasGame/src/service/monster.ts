@@ -6,11 +6,17 @@ import { calcDirect } from "@/utils";
 
 export class Monster extends Base {
     type: string = "";
-    speed: number = 0;
     blood: number = 0;
     currentBlood: number = 0;
     // 敌人已死亡
     finished: boolean = false;
+
+    // 速度
+    speed: number = 0;
+    // 缓存原始速度，减速时有用
+    _speed: number = 0;
+    // 减速计时器
+    speedTimer: number = null!;
 
     // 怪物动画抽帧canvas图集
     springImages: HTMLCanvasElement[] = [];
@@ -40,6 +46,7 @@ export class Monster extends Base {
         this.initLayout();
 
         this.speed = speed;
+        this._speed = speed;
         this.blood = blood;
         this.currentBlood = blood;
         this.coord = coord;
@@ -112,7 +119,7 @@ export class Monster extends Base {
         switch (direct) {
             case "left":
                 this.coord.x -= this.speed;
-                if (this.coord.x <= nextMapItem.x ) {
+                if (this.coord.x <= nextMapItem.x) {
                     this.coord.index += 1;
                 }
                 break;
@@ -124,7 +131,7 @@ export class Monster extends Base {
                 break;
             case "top":
                 this.coord.y -= this.speed;
-                if (this.coord.y <= nextMapItem.y ) {
+                if (this.coord.y <= nextMapItem.y) {
                     this.coord.index += 1;
                 }
                 break;
@@ -175,6 +182,23 @@ export class Monster extends Base {
      */
     damage(damage: number) {
         this.currentBlood -= damage;
+    }
+
+    /**
+     * 减速
+     * @param {any} speed:减速量
+     * @param {any} time:减速时间
+     */
+    slow(speed: number, time: number) {
+        if (this.speedTimer) {
+            clearTimeout(this.speedTimer);
+        }
+
+        this.speed = this._speed - speed;
+        this.speedTimer = setTimeout(() => {
+            // 恢复原始速度
+            this.speed = this._speed;
+        }, time);
     }
 
     finish() {

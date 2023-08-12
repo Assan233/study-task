@@ -14,8 +14,16 @@ export function useTower() {
      * 防御塔初始化
      */
     async function addTower(config: typeof Tower_A) {
-        const { range, speed, damage, coord, assets, fireRate, damageRange } =
-            config;
+        const {
+            range,
+            speed,
+            slow,
+            damage,
+            coord,
+            assets,
+            fireRate,
+            damageRange,
+        } = config;
         const { tower, bullet, effect } = assets;
 
         // 静态资源初始化
@@ -37,12 +45,11 @@ export function useTower() {
                     effect.height
                 ),
             ]);
-        effectSpringImages.map((img) => {
-            document.body.appendChild(img);
-        });
+
         const _tower = new Tower({
             range,
             speed,
+            slow,
             damage,
             damageRange,
             fireRate,

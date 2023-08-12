@@ -5,7 +5,7 @@ import monsterSpringD from "@/assets/monster_3.png";
 import monsterSpringE from "@/assets/monster_4.png";
 
 export const MONSTER_A = {
-    speed: 2,
+    speed: 3,
     blood: 100,
     coord: { index: 0, x: 0, y: 0 },
     assets: {

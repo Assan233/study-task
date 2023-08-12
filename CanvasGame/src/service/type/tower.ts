@@ -9,6 +9,7 @@ export type ITower = {
 export type TowerConfig = {
     range: number;
     speed: number;
+    slow: number;
     fireRate: number;
     damage: number;
     damageRange: number;

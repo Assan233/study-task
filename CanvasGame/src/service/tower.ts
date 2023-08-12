@@ -23,6 +23,8 @@ export class Tower extends Base {
     range: number = 0;
     // 子弹速度
     speed: number = 0;
+    // 减速
+    slow: number = 0;
     // 伤害
     damage: number = 0;
     // 伤害半径
@@ -164,6 +166,7 @@ export class Tower extends Base {
             const {
                 range,
                 speed,
+                slow,
                 damage,
                 damageRange,
                 bulletSpring,
@@ -174,6 +177,7 @@ export class Tower extends Base {
                 range,
                 speed,
                 damage,
+                slow,
                 damageRange,
                 target,
                 towerCoord: this.coord,
