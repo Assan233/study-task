@@ -33,14 +33,15 @@ export function checkInRange(
  */
 export function calcDirect(currentPoint: Coord, targetPoint: Coord): Direct {
     const angle = calcAngleInDegrees(currentPoint, targetPoint);
+    let direct: Direct = null!;
+    
+    // 根据2点间连接线的角度偏向，计算移动方向
     const calcMap = {
         top: () => angle >= 45 && angle < 135,
         left: () => angle >= 135 && angle < 225,
         bottom: () => angle >= 225 && angle < 315,
         right: () => angle >= 315 || angle < 45,
     };
-
-    let direct: Direct = null!;
     (Object.keys(calcMap) as Direct[]).forEach((key) => {
         if (calcMap[key]()) {
             direct = key;

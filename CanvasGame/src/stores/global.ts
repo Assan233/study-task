@@ -82,6 +82,11 @@ export const useGlobalStore = defineStore("global", {
          */
         damageUser() {
             this.blood -= 1;
+            
+            // 输了清空画布
+            if (this.blood === 0) {
+                this.clear();
+            }
         },
         /**
          * 玩家得分
