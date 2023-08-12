@@ -81,6 +81,8 @@ function onBuild(info: TowerInfo) {
             left: 4px;
             display: inline-block;
             width: 45px;
+            height: 18px;
+            line-height: 19px;
             text-align: center;
             font-size: 12px;
             font-weight: 600;
