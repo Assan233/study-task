@@ -22,5 +22,5 @@ export const MENU_DATA = [
     { type: "arrow", coast: 50, url: menuA },
     { type: "venom", coast: 100, url: menuC },
     { type: "shell", coast: 150, url: menuB },
-    { type: "ice", coast: 100, url: menuD },
+    { type: "ice", coast: 200, url: menuD },
 ];

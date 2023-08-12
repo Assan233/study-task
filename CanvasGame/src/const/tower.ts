@@ -96,9 +96,9 @@ export const Tower_D = {
     range: 200,
     damageRange: 90,
     speed: 8,
-    slow: 2,
+    slow: 3,
     damage: 15,
-    fireRate: 5000,
+    fireRate: 6000,
     coord: { x: 0, y: 0 },
     assets: {
         tower: towerD,

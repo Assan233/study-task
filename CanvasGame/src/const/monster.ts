@@ -5,7 +5,7 @@ import monsterSpringD from "@/assets/monster_3.png";
 import monsterSpringE from "@/assets/monster_4.png";
 
 export const MONSTER_A = {
-    speed: 3,
+    speed: 4,
     blood: 100,
     coord: { index: 0, x: 0, y: 0 },
     assets: {
@@ -18,7 +18,7 @@ export const MONSTER_A = {
 };
 
 export const MONSTER_B = {
-    speed: 4,
+    speed: 5,
     blood: 150,
     coord: { index: 0, x: 0, y: 0 },
     assets: {
@@ -30,7 +30,7 @@ export const MONSTER_B = {
     },
 };
 export const MONSTER_C = {
-    speed: 6,
+    speed: 7,
     blood: 200,
     coord: { index: 0, x: 0, y: 0 },
     assets: {
@@ -42,7 +42,7 @@ export const MONSTER_C = {
     },
 };
 export const MONSTER_D = {
-    speed: 6,
+    speed: 7,
     blood: 250,
     coord: { index: 0, x: 0, y: 0 },
     assets: {
@@ -55,7 +55,7 @@ export const MONSTER_D = {
 };
 
 export const MONSTER_E = {
-    speed: 4,
+    speed: 5,
     blood: 180,
     coord: { index: 0, x: 0, y: 0 },
     assets: {
