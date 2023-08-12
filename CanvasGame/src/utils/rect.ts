@@ -21,8 +21,7 @@ export function checkInRange(
     point: Coord,
     radius: number
 ): boolean {
-    ctx.arc(recPoint.x, recPoint.y, radius, 0, Math.PI * 2, false);
-    return ctx.isPointInPath(point.x, point.y);
+    return Math.hypot(point.x - recPoint.x, point.y - recPoint.y) <= radius;
 }
 
 /**
