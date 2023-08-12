@@ -171,7 +171,7 @@ export class Bullet {
         }
 
         // 满足时间间隔，切换下一帧
-        const timeSpace = 60;
+        const timeSpace = 160;
         if (Date.now() - this.effectSpring.springDate > timeSpace) {
             this.effectSpring.springDate = Date.now();
             this.effectSpring.index += 1;

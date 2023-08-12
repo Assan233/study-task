@@ -19,8 +19,8 @@ export const LAYOUT_SIZE = {
 };
 
 export const MENU_DATA = [
-    { coast: 50, url: menuA },
-    { coast: 100, url: menuC },
-    { coast: 150, url: menuB },
-    { coast: 0, url: menuD },
+    { type: "arrow", coast: 50, url: menuA },
+    { type: "venom", coast: 100, url: menuC },
+    { type: "shell", coast: 150, url: menuB },
+    { type: "ice", coast: 100, url: menuD },
 ];

@@ -19,7 +19,7 @@
 import { MENU_DATA } from "@/const";
 import { ref } from "vue";
 
-type TowerInfo = { coast: number; url: string };
+type TowerInfo = { type: string; coast: number; url: string };
 
 defineProps<{
     visible: boolean;

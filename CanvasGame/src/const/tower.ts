@@ -9,6 +9,10 @@ import bulletEffectB from "@/assets/bullet_effect_1.png";
 import towerC from "@/assets/tower_2.png";
 import bulletC from "@/assets/bullet_2.png";
 
+import towerD from "@/assets/tower_3.png";
+import bulletD from "@/assets/bullet_3.png";
+import bulletEffectD from "@/assets/bullet_effect_3.png";
+
 export const Tower_A = {
     range: 150,
     damageRange: 60,
@@ -81,6 +85,32 @@ export const Tower_C = {
             row: 0,
             width: 0,
             height: 0,
+        },
+    },
+};
+
+export const Tower_D = {
+    range: 200,
+    damageRange: 90,
+    speed: 8,
+    damage: 15,
+    fireRate: 2000,
+    coord: { x: 0, y: 0 },
+    assets: {
+        tower: towerD,
+        bullet: {
+            url: bulletD,
+            col: 1,
+            row: 1,
+            width: 30,
+            height: 30,
+        },
+        effect: {
+            url: bulletEffectD,
+            col: 3,
+            row: 2,
+            width: 70,
+            height: 74,
         },
     },
 };

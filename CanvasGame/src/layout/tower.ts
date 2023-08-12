@@ -1,11 +1,11 @@
 import { Tower } from "@/service";
-import { Tower_A, Tower_B, Tower_C } from "@/const";
+import { Tower_A, Tower_B, Tower_C, Tower_D } from "@/const";
 import { useGlobalStore } from "@/stores";
 import { readAllSprite, loadImage } from "@/utils";
 import pick from "lodash/pick";
 import type { Coord } from "@/service/type";
 
-type TowerInfo = { coast: number; url: string };
+type TowerInfo = { type: string; coast: number; url: string };
 
 export function useTower() {
     const global = useGlobalStore();
@@ -37,7 +37,9 @@ export function useTower() {
                     effect.height
                 ),
             ]);
-
+        effectSpringImages.map((img) => {
+            document.body.appendChild(img);
+        });
         const _tower = new Tower({
             range,
             speed,
@@ -87,18 +89,23 @@ export function useTower() {
             return;
         }
 
-        switch (info.coast) {
-            case 50:
+        switch (info.type) {
+            case "arrow":
                 setCoord(Tower_C.coord);
                 addTower(Tower_C);
                 break;
-            case 100:
+            case "venom":
                 setCoord(Tower_A.coord);
                 addTower(Tower_A);
                 break;
-            case 150:
+            case "shell":
                 setCoord(Tower_B.coord);
                 addTower(Tower_B);
+                break;
+
+            case "ice":
+                setCoord(Tower_D.coord);
+                addTower(Tower_D);
                 break;
         }
 
