@@ -2,6 +2,7 @@ import monsterSpringA from "@/assets/monster_0.png";
 import monsterSpringB from "@/assets/monster_1.png";
 import monsterSpringC from "@/assets/monster_2.png";
 import monsterSpringD from "@/assets/monster_3.png";
+import monsterSpringE from "@/assets/monster_4.png";
 
 export const MONSTER_A = {
     speed: 2,
@@ -50,5 +51,18 @@ export const MONSTER_D = {
         row: 2,
         width: 45,
         height: 51,
+    },
+};
+
+export const MONSTER_E = {
+    speed: 4,
+    blood: 180,
+    coord: { index: 0, x: 0, y: 0 },
+    assets: {
+        url: monsterSpringE,
+        col: 2,
+        row: 2,
+        width: 38,
+        height: 43,
     },
 };

@@ -2,11 +2,11 @@ import type { IMonster } from "@/service/type";
 
 import { Monster } from "@/service";
 import { readAllSprite } from "@/utils";
-import { MONSTER_A, MONSTER_B, MONSTER_C, MONSTER_D } from "@/const";
+import { MONSTER_A, MONSTER_B, MONSTER_C, MONSTER_D, MONSTER_E } from "@/const";
 import { useGlobalStore } from "@/stores";
 import { random, cloneDeep } from "lodash";
 
-const monsterPresets = [MONSTER_A, MONSTER_B, MONSTER_C, MONSTER_D];
+const monsterPresets = [MONSTER_A, MONSTER_B, MONSTER_C, MONSTER_D, MONSTER_E];
 
 export function useMonster() {
     const global = useGlobalStore();
