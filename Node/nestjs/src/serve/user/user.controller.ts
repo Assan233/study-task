@@ -1,6 +1,7 @@
+import type { CreateUser } from './interfaces';
+
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from './interfaces';
 
 @Controller('user')
 export class UserController {
@@ -10,10 +11,10 @@ export class UserController {
    * 获取用户列表
    */
   @Get('list')
-  getUserList() {
+  async getUserList() {
     return {
       code: 200,
-      data: this.userService.getUserList(),
+      data: await this.userService.getUserList(),
     };
   }
 
@@ -21,8 +22,8 @@ export class UserController {
    * 添加用户
    */
   @Post()
-  createUser(@Body() dto: User) {
-    this.userService.createUser(dto);
+  async createUser(@Body() dto: CreateUser) {
+    await this.userService.createUser(dto);
     return {
       code: 200,
       message: 'Success.',
