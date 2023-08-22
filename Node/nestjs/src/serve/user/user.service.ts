@@ -1,4 +1,4 @@
-import type { User as IUser, CreateUser } from './interfaces';
+import type { User as IUser, CreateUser, UpdateUser } from './interfaces';
 
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -18,7 +18,30 @@ export class UserService {
     return list;
   }
 
-  async createUser(user: CreateUser) {
-    await this.usersRepository.insert(user);
+  async getUserDetail(id: number): Promise<IUser> {
+    const user = await this.usersRepository.findOneBy({ id });
+    return user;
+  }
+
+  async createUser(user: CreateUser): Promise<IUser> {
+    const { raw } = await this.usersRepository.insert(user);
+    const { insertId: id } = raw;
+
+    return this.getUserDetail(id);
+  }
+
+  async deleteUser(id: number) {
+    await this.usersRepository.delete(id);
+  }
+
+  async updateUser(user: UpdateUser): Promise<IUser> {
+    const { name, password } = user;
+    const { raw } = await this.usersRepository.update(user.id, {
+      name,
+      password,
+    });
+
+    const { insertId: id } = raw;
+    return this.getUserDetail(id);
   }
 }
