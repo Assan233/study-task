@@ -1,9 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './serve/user/user.module';
 import { UserInfoModule } from './serve/user-info/user-info.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppMiddleware } from './app.middleware';
+import { UserMiddleware } from '@/serve/user/user.middleware';
 
 const UserDBModule = TypeOrmModule.forRoot({
   //   name: 'userConnection', // 用户标记不同的表
@@ -31,4 +33,9 @@ const UserDBModule = TypeOrmModule.forRoot({
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  // 应用全局中间件
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AppMiddleware, UserMiddleware).forRoutes('*'); // * 匹配所有路由
+  }
+}
