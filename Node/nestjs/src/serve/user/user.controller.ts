@@ -1,4 +1,5 @@
 import type { CreateUser, UpdateUser } from './interfaces';
+// import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 
 import {
   Controller,
@@ -13,13 +14,20 @@ import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService, // private readonly amqpConnection: AmqpConnection,
+  ) {}
 
   /**
    * 获取用户列表
    */
   @Get('list')
   async getUserList() {
+    // MQ 消息发送
+    // this.amqpConnection.publish('exchangeA', 'list', {
+    //   msg: 'hello world',
+    // });
+
     return {
       code: 200,
       data: await this.userService.getUserList(),

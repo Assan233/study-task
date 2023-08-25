@@ -6,6 +6,7 @@ import { UserInfoModule } from './serve/user-info/user-info.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppMiddleware } from './app.middleware';
 import { UserMiddleware } from '@/serve/user/user.middleware';
+// import { MqModule } from './message/mq/mq.module';
 
 const UserDBModule = TypeOrmModule.forRoot({
   //   name: 'userConnection', // 用户标记不同的表
@@ -29,7 +30,12 @@ const UserDBModule = TypeOrmModule.forRoot({
 });
 
 @Module({
-  imports: [UserModule, UserInfoModule, UserDBModule],
+  imports: [
+    UserModule,
+    UserInfoModule,
+    UserDBModule,
+    // MqModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
