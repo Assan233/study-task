@@ -11,10 +11,13 @@ import {
   Param,
   HttpException,
   HttpStatus,
+  UseFilters,
 } from '@nestjs/common';
 import { UserService } from './user.service';
+import { CustomExceptionFilter } from '@/error';
 
 @Controller('user')
+@UseFilters(CustomExceptionFilter) /** 绑定自定义异常过滤器 */
 export class UserController {
   constructor(
     private userService: UserService, // private readonly amqpConnection: AmqpConnection,
@@ -30,7 +33,7 @@ export class UserController {
     //   msg: 'hello world',
     // });
 
-    /** 异常处理 */
+    /** nest异常过滤器 */
     // throw new HttpException(
     //   {
     //     error: 'Forbidden',
