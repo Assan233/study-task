@@ -9,6 +9,8 @@ import {
   Put,
   Body,
   Param,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 
@@ -23,10 +25,19 @@ export class UserController {
    */
   @Get('list')
   async getUserList() {
-    // MQ 消息发送
+    /** MQ 消息发送 */
     // this.amqpConnection.publish('exchangeA', 'list', {
     //   msg: 'hello world',
     // });
+
+    /** 异常处理 */
+    // throw new HttpException(
+    //   {
+    //     error: 'Forbidden',
+    //     code: 505,
+    //   },
+    //   HttpStatus.FORBIDDEN, //403
+    // );
 
     return {
       code: 200,
