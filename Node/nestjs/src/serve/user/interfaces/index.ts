@@ -1,11 +1,18 @@
+const Joi = require('joi');
+
 export interface User {
   id: number;
   name: string;
 }
 
-export interface CreateUser {
+// 定义Joi做管道验证的验证规则
+export const CreateUserSchema = Joi.object({
+  name: Joi.string().required(),
+  password: Joi.string().required(),
+});
+export interface CreateUserDTO {
   name: string;
   password: string;
 }
 
-export type UpdateUser = CreateUser & { id: number };
+export type UpdateUserDTO = CreateUserDTO & { id: number };

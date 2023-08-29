@@ -1,4 +1,4 @@
-import type { CreateUser, UpdateUser } from './interfaces';
+import { CreateUserDTO, UpdateUserDTO, CreateUserSchema } from './interfaces';
 // import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 
 import {
@@ -9,12 +9,15 @@ import {
   Put,
   Body,
   Param,
-  HttpException,
-  HttpStatus,
+  //   HttpException,
+  //   HttpStatus,
   UseFilters,
+  ParseIntPipe,
+  UsePipes,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CustomExceptionFilter } from '@/error';
+import { JoiValidationPipe } from '@/pipe';
 
 @Controller('user')
 @UseFilters(CustomExceptionFilter) /** 绑定自定义异常过滤器 */
@@ -52,7 +55,7 @@ export class UserController {
    * 获取用户
    */
   @Get(':id')
-  async getUserDetail(@Param('id') id: number) {
+  async getUserDetail(@Param('id', ParseIntPipe) id: number) {
     return {
       code: 200,
       data: await this.userService.getUserDetail(id),
@@ -63,7 +66,9 @@ export class UserController {
    * 添加用户
    */
   @Post()
-  async createUser(@Body() dto: CreateUser) {
+  /** 应用自定义dto验证管道 */
+  @UsePipes(new JoiValidationPipe(CreateUserSchema))
+  async createUser(@Body() dto: CreateUserDTO) {
     const user = await this.userService.createUser(dto);
     return {
       code: 200,
@@ -87,7 +92,7 @@ export class UserController {
    * 更新用户
    */
   @Put()
-  async updateUser(@Body() dto: UpdateUser) {
+  async updateUser(@Body() dto: UpdateUserDTO) {
     const user = await this.userService.updateUser(dto);
     return {
       code: 200,

@@ -1,4 +1,4 @@
-import type { User as IUser, CreateUser, UpdateUser } from './interfaces';
+import type { User as IUser, CreateUserDTO, UpdateUserDTO } from './interfaces';
 
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -23,7 +23,7 @@ export class UserService {
     return user;
   }
 
-  async createUser(user: CreateUser): Promise<IUser> {
+  async createUser(user: CreateUserDTO): Promise<IUser> {
     const { raw } = await this.usersRepository.insert(user);
     const { insertId: id } = raw;
 
@@ -34,7 +34,7 @@ export class UserService {
     await this.usersRepository.delete(id);
   }
 
-  async updateUser(user: UpdateUser): Promise<IUser> {
+  async updateUser(user: UpdateUserDTO): Promise<IUser> {
     const { name, password } = user;
     const { raw } = await this.usersRepository.update(user.id, {
       name,
