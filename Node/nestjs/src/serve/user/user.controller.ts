@@ -17,7 +17,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CustomExceptionFilter } from '@/error';
-import { JoiValidationPipe } from '@/pipe';
+import { JoiValidationPipe, IntValidationPipe } from '@/pipe';
 
 @Controller('user')
 @UseFilters(CustomExceptionFilter) /** 绑定自定义异常过滤器 */
@@ -55,7 +55,10 @@ export class UserController {
    * 获取用户
    */
   @Get(':id')
-  async getUserDetail(@Param('id', ParseIntPipe) id: number) {
+  async getUserDetail(
+    @Param('id', ParseIntPipe) // 使用nest内置验证管道：ParseIntPipe
+    id: number,
+  ) {
     return {
       code: 200,
       data: await this.userService.getUserDetail(id),
@@ -81,7 +84,10 @@ export class UserController {
    * 删除用户
    */
   @Delete(':id')
-  async deleteUser(@Param('id') id: number) {
+  async deleteUser(
+    @Param('id', IntValidationPipe) // 使用自定义验证管道：IntValidationPipe
+    id: number,
+  ) {
     return {
       code: 200,
       data: await this.userService.deleteUser(id),
