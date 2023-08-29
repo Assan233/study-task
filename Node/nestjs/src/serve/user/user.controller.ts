@@ -17,7 +17,11 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CustomExceptionFilter } from '@/error';
-import { JoiValidationPipe, IntValidationPipe } from '@/pipe';
+import {
+  JoiValidationPipe,
+  IntValidationPipe,
+  ClassValidationPipe,
+} from '@/pipe';
 
 @Controller('user')
 @UseFilters(CustomExceptionFilter) /** 绑定自定义异常过滤器 */
@@ -98,7 +102,8 @@ export class UserController {
    * 更新用户
    */
   @Put()
-  async updateUser(@Body() dto: UpdateUserDTO) {
+  //   @UsePipes(ClassValidationPipe)
+  async updateUser(@Body(ClassValidationPipe) dto: UpdateUserDTO) {
     const user = await this.userService.updateUser(dto);
     return {
       code: 200,
