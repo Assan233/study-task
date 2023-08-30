@@ -1,4 +1,5 @@
 import { CreateUserDTO, UpdateUserDTO, CreateUserSchema } from './interfaces';
+import { ApiInterceptor } from '@/interceptor';
 import { AuthGuard } from '@/guard';
 // import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 
@@ -14,8 +15,9 @@ import {
   //   HttpStatus,
   UseFilters,
   UseGuards,
-  ParseIntPipe,
   UsePipes,
+  UseInterceptors,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CustomExceptionFilter } from '@/error';
@@ -28,6 +30,7 @@ import {
 @Controller('user')
 @UseGuards(AuthGuard) /** 绑定路由守卫 */
 @UseFilters(CustomExceptionFilter) /** 绑定自定义异常过滤器 */
+@UseInterceptors(ApiInterceptor) /** 绑定 拦截器 */
 export class UserController {
   constructor(
     private userService: UserService, // private readonly amqpConnection: AmqpConnection,
@@ -51,6 +54,7 @@ export class UserController {
     //   },
     //   HttpStatus.FORBIDDEN, //403
     // );
+    console.log('方法执行：getUserList');
 
     return {
       code: 200,
