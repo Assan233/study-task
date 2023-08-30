@@ -1,4 +1,5 @@
 import { CreateUserDTO, UpdateUserDTO, CreateUserSchema } from './interfaces';
+import { AuthGuard } from '@/guard';
 // import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 
 import {
@@ -12,6 +13,7 @@ import {
   //   HttpException,
   //   HttpStatus,
   UseFilters,
+  UseGuards,
   ParseIntPipe,
   UsePipes,
 } from '@nestjs/common';
@@ -24,6 +26,7 @@ import {
 } from '@/pipe';
 
 @Controller('user')
+@UseGuards(AuthGuard) /** 绑定路由守卫 */
 @UseFilters(CustomExceptionFilter) /** 绑定自定义异常过滤器 */
 export class UserController {
   constructor(
